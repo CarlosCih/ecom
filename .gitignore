@@ -1,0 +1,54 @@
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
+# archivos de dependencias
+node_modules/
+# archivos de construcción
+dist/
+build/
+# archivos de log
+logs/
+*.log
+# archivos de sistema
+.DS_Store
+Thumbs.db
+# archivos de editor
+.vscode/
+.idea/
+# archivos de cobertura de pruebas
+coverage/
+# archivos de caché
+.cache/
+# archivos de producción
+production/
+# archivos de pruebas
+tests/
+# archivos de documentacióndocs/
+# archivos de configuración de CI/CD
+.github/
+.gitlab-ci.yml
+# archivos de configuración de Docker
+Dockerfile
+docker-compose.yml
+# archivos de configuración de Kubernetes
+k8s/
+# archivos de configuración de Terraform
+terraform/
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+*.env
+# Python # 
+*.py[cod] 
+*$py.class 
+# pyenv 
+.python-version 
