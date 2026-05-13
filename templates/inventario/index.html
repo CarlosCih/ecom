@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Inventario{% endblock %}
+{% block body %}
+<div class="min-h-screen bg-gray-50">
+
+    <!-- Header / Hero -->
+    <div class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Inventario de Productos</h1>
+            <p class="mt-1 text-sm text-gray-500">{{ products|length }} producto{{ products|length|pluralize }} disponible{{ products|length|pluralize }}</p>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {% if products %}
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {% for product in products %}
+            <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
+
+                <!-- Image -->
+                <div class="relative overflow-hidden bg-gray-100 aspect-square">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    {% endif %}
+
+                    <!-- Stock badge -->
+                    {% if product.stock <= 0 %}
+                    <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Sin stock</span>
+                    {% elif product.stock <= 5 %}
+                    <span class="absolute top-2 left-2 bg-yellow-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Últimas unidades</span>
+                    {% endif %}
+                </div>
+
+                <!-- Info -->
+                <div class="p-4 flex flex-col flex-1">
+                    <h2 class="text-base font-semibold text-gray-900 leading-snug line-clamp-2">{{ product.name }}</h2>
+                    {% if product.description %}
+                    <p class="mt-1 text-sm text-gray-500 line-clamp-2 flex-1">{{ product.description }}</p>
+                    {% endif %}
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="text-xl font-bold text-indigo-600">${{ product.price }}</span>
+                        <span class="text-xs text-gray-400">Stock: {{ product.stock }}</span>
+                    </div>
+
+                    <a href="{% url 'product_detail' slug=product.slug %}"
+                       class="mt-4 block text-center bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium py-2 px-4 rounded-xl transition-colors duration-200">
+                        Ver más
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="flex flex-col items-center justify-center py-24 text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+            </svg>
+            <p class="text-lg font-medium">No hay productos disponibles</p>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
