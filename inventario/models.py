@@ -31,5 +31,17 @@ class Product(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+        
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(blank=True)
+    
+    class Meta:
+        verbose_name = 'Categoría'
+        verbose_name_plural = 'Categorías'
+        
+    def __str__(self):
+        return self.name
+
     
     
