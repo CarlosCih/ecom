@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static inventario_tags %}
 {% block title %}{{ object.name }}{% endblock %}
 
 {% block body %}
@@ -25,7 +26,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-
                 <!-- Image -->
                 <div class="relative bg-gray-100 flex items-center justify-center min-h-80 lg:min-h-[500px]">
                     {% if object.image %}
@@ -89,17 +89,23 @@
                         <div class="flex items-center gap-3">
                             <label class="text-sm font-medium text-gray-700">Cantidad:</label>
                             <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                <button type="button" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold transition-colors">−</button>
-                                <input type="number" value="1" min="1" max="{{ object.stock }}"
-                                       class="w-14 text-center text-sm py-2 border-none outline-none bg-white">
-                                <button type="button" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold transition-colors">+</button>
+                                <select name="quantity" id="quantity">
+                                    {% for i in 1|to:object.stock %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
 
                         <!-- Actions -->
                         <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                            <button {% if object.stock <= 0 %}disabled{% endif %}
-                                    class="flex-1 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2">
+                            <button 
+                            {% if object.stock <= 0 %}disabled{% endif %}     
+                            class="flex-1 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2"
+                            id="atc"
+                            data-url="{% url 'add_to_cart' %}"
+                            data-id="{{ object.id }}"
+                            >
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -116,6 +122,6 @@
             </div>
         </div>
     </div>
-
 </div>
+<script src="{% static 'js/addtocart.js' %}"></script>
 {% endblock %}

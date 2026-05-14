@@ -16,7 +16,7 @@
         {% if products %}
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {% for product in products %}
-            <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
+            <a href="{{ product.get_absolute_url }}" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
 
                 <!-- Image -->
                 <div class="relative overflow-hidden bg-gray-100 aspect-square">
@@ -43,21 +43,14 @@
                 <!-- Info -->
                 <div class="p-4 flex flex-col flex-1">
                     <h2 class="text-base font-semibold text-gray-900 leading-snug line-clamp-2">{{ product.name }}</h2>
-                    {% if product.description %}
-                    <p class="mt-1 text-sm text-gray-500 line-clamp-2 flex-1">{{ product.description }}</p>
-                    {% endif %}
-
                     <div class="mt-4 flex items-center justify-between">
                         <span class="text-xl font-bold text-indigo-600">${{ product.price }}</span>
                         <span class="text-xs text-gray-400">Stock: {{ product.stock }}</span>
                     </div>
 
-                    <a href="{% url 'product_detail' slug=product.slug %}"
-                       class="mt-4 block text-center bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-medium py-2 px-4 rounded-xl transition-colors duration-200">
-                        Ver más
-                    </a>
                 </div>
-            </div>
+
+            </a>
             {% endfor %}
         </div>
         {% else %}

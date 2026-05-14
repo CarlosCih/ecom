@@ -1,8 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
+    
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'slug': self.slug})
+    
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.FloatField()
