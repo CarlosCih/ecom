@@ -8,3 +8,19 @@ class Cart():
         if 'cart' not in self.session:
             cart = self.session['cart'] = {}
         self.cart = cart
+    def __len__(self):
+        return sum(int(item['quantity']) for item in self.cart.values())
+    
+    def add(self, product, quantity):
+        # Agrega un producto al carrito o actualiza su cantidad
+        product_id = product.id 
+        if product_id in self.cart:
+            self.cart[product_id]['quantity'] += int(quantity)
+        else:
+            self.cart[product_id] = {'quantity': int(quantity), 'price': str(product.price)}
+        self.save()
+
+    def save(self):
+        # Guarda el carrito en la sesión
+        self.session['cart'] = self.cart
+        self.session.modified = True
