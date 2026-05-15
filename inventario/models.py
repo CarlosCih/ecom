@@ -2,6 +2,19 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Categoría'
+        verbose_name_plural = 'Categorías'
+        
+    def __str__(self):
+        return self.name
+
 # Create your models here.
 class Product(models.Model):
     
@@ -9,6 +22,7 @@ class Product(models.Model):
         return reverse('product_detail', kwargs={'slug': self.slug})
     
     name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', null=True, blank=True)
     description = models.TextField()
     price = models.FloatField()
     stock = models.IntegerField()
@@ -36,17 +50,6 @@ class Product(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
-        
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField(blank=True)
-    
-    class Meta:
-        verbose_name = 'Categoría'
-        verbose_name_plural = 'Categorías'
-        
-    def __str__(self):
-        return self.name
 
     
     

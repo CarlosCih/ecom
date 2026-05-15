@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static inventario_tags %}
+{% block title %}Carrito de Compras{% endblock title %}
+{% block body %}
+<div class="min-h-screen bg-gray-50 py-10 sm:px-6 ">
+    <div class="mx-auto max-w-4xl">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Carrito de Compras</h1>
+        {% if cart %}
+        <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-700 text-gray-300 uppercase text-xs tracking-wider">
+                        <tr>
+                            <th class="px-6 py-4"></th>
+                            <th class="px-6 py-4">Producto</th>
+                            <th class="px-6 py-4 text-center">Cantidad</th>
+                            <th class="px-6 py-4 text-right">Precio Unitario</th>
+                            <th class="px-6 py-4 text-right">Precio Total</th>
+                            <th class="px-6 py-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        {% for item in cart %}
+                        <tr class="text-gray-200 hover:bg-gray-700/50 transition-colors duration-150"
+                        data-price="{{ item.price }}"
+                        data-id="{{ item.product.id }}">
+                            <td class="px-6 py-4">
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-lg">
+                            </td>
+                            <td class="px-6 py-4 font-medium">{{ item.product.name }}</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="inline-block bg-indigo-600/30 text-indigo-300 font-semibold rounded-full px-3 py-0.5">
+                                    <select name="quantity_{{ item.product.id }}" id="quantity_{{ item.product.id }}">
+                                        {% for i in 1|to:item.product.stock %}
+                                        <option value="{{ i }}" {% if i == item.quantity %}selected{% endif %}>{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-right text-gray-300">${{ item.price }}</td>
+                            <td class="px-6 py-4 text-right font-semibold text-white"
+                            id="total-{{ item.product.id }}">${{ item.total_price }}</td>
+                            <td class="px-6 py-4 text-right">
+                                <button type="button" class="btn-remove text-red-500 hover:text-red-400 transition-colors cursor-pointer"
+                                    data-url="{% url 'remove_from_cart' %}"
+                                    data-id="{{ item.product.id }}"
+                                    data-name="{{ item.product.name }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="flex justify-between items-center px-6 py-5 bg-gray-700/50 border-t border-gray-600">
+                    <a href="{% url 'home' %}" class="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
+                        ← Seguir comprando
+                    </a>
+                    <div class="flex items-center gap-6">
+                        <span class="text-gray-300 text-sm">Total</span>
+                        <span class="text-2xl font-bold text-white" id="cart-total">${{ cart.get_total_price }}</span>
+                        <button class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150">
+                            Proceder al pago
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {% else %}
+        <div class="flex flex-col items-center justify-center py-24 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-600 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15a3 3 0 00-3-3m-12-6h15m-12 0l1.384 5.523a1.125 1.125 0 001.087.652h7.35a1.125 1.125 0 001.087-.652L21 8.25" />
+            </svg>
+            <p class="text-gray-400 text-lg mb-4">Tu carrito está vacío.</p>
+            <a href="{% url 'home' %}" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors duration-150">
+                Ver productos
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+    // --- Eliminar producto del carrito ---
+    document.querySelectorAll('.btn-remove').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const productId   = this.dataset.id;
+            const productName = this.dataset.name;
+            const url         = this.dataset.url;
+            const row         = this.closest('tr');
+
+            Swal.fire({
+                title: '¿Eliminar producto?',
+                text: `"${productName}" será eliminado del carrito.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar',
+                background: '#1f2937',
+                color: '#f3f4f6',
+            }).then(result => {
+                if (!result.isConfirmed) return;
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        product_id: productId,
+                        csrfmiddlewaretoken: getCookie('csrftoken'),
+                    },
+                    success: function (json) {
+                        // Eliminar fila de la tabla
+                        row.remove();
+
+                        // Actualizar total del carrito
+                        document.getElementById('cart-total').textContent = `$${parseFloat(json.cart_total).toFixed(2)}`;
+
+                        // Actualizar badge del navbar
+                        document.getElementById('cart-count').textContent = json.cart_quantity;
+
+                        // Si el carrito quedó vacío, recargar para mostrar estado vacío
+                        if (json.cart_quantity === 0) {
+                            location.reload();
+                        }
+
+                        Swal.fire({
+                            title: 'Eliminado',
+                            text: `"${productName}" fue eliminado del carrito.`,
+                            icon: 'success',
+                            background: '#1f2937',
+                            color: '#f3f4f6',
+                            timer: 1800,
+                            showConfirmButton: false,
+                        });
+                    }
+                });
+            });
+        });
+    });
+
+    // --- Actualizar totales al cambiar cantidad ---
+    document.querySelectorAll('select[name^="quantity_"]').forEach(select => {
+        select.addEventListener('change', function () {
+            const row   = this.closest('tr');
+            const price = parseFloat(row.dataset.price);
+            const qty   = parseInt(this.value);
+            const id    = row.dataset.id;
+
+            document.getElementById(`total-${id}`).textContent = `$${(price * qty).toFixed(2)}`;
+
+            // recalcular total del carrito sumando todas las filas
+            let total = 0;
+            document.querySelectorAll('tr[data-price]').forEach(r => {
+                const p = parseFloat(r.dataset.price);
+                const q = parseInt(r.querySelector('select').value);
+                total += p * q;
+            });
+            document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+        });
+    });
+</script>
+{% endblock %}

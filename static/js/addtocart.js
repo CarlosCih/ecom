@@ -17,13 +17,15 @@ $(document).on('click', '#atc', function(e) {
             'csrfmiddlewaretoken': getCookie('csrftoken'),
             'quantity': $('#quantity').val()
         },
-        success: function(response) {
-            console.log("Respuesta del servidor:", response);
+        success: function(json) {
+            console.log("Respuesta del servidor:", json);
+            document.getElementById('cart-count').textContent = json.cart_quantity;
             Swal.fire({
                 title: "Producto agregado al carrito",
                 icon: "success",
                 draggable: true
             });
+            
         }
     });
 })
