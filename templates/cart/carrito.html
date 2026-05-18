@@ -26,9 +26,17 @@
                         data-price="{{ item.price }}"
                         data-id="{{ item.product.id }}">
                             <td class="px-6 py-4">
-                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-lg">
+                                {% if item.product.image %}
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-lg">
+                                {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                            d="M3 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                {% endif %}
                             </td>
                             <td class="px-6 py-4 font-medium">{{ item.product.name }}</td>
+                            <!-- Cantidad con select -->
                             <td class="px-6 py-4 text-center">
                                 <span class="inline-block bg-indigo-600/30 text-indigo-300 font-semibold rounded-full px-3 py-0.5">
                                     <select name="quantity_{{ item.product.id }}" id="quantity_{{ item.product.id }}">
@@ -61,9 +69,9 @@
                     <div class="flex items-center gap-6">
                         <span class="text-gray-300 text-sm">Total</span>
                         <span class="text-2xl font-bold text-white" id="cart-total">${{ cart.get_total_price }}</span>
-                        <button class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150">
+                        <a href="#" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150">
                             Proceder al pago
-                        </button>
+                        </a>
                     </div>
                 </div>
             </form>
@@ -123,19 +131,17 @@
                         // Actualizar badge del navbar
                         document.getElementById('cart-count').textContent = json.cart_quantity;
 
-                        // Si el carrito quedó vacío, recargar para mostrar estado vacío
-                        if (json.cart_quantity === 0) {
-                            location.reload();
-                        }
-
+                        // Mostrar alerta y recargar solo si el carrito quedó vacío
                         Swal.fire({
-                            title: 'Eliminado',
-                            text: `"${productName}" fue eliminado del carrito.`,
+                            toast: true,
+                            position: 'top-end',
+                            title: `"${productName}" eliminado del carrito.`,
                             icon: 'success',
-                            background: '#1f2937',
-                            color: '#f3f4f6',
-                            timer: 1800,
+                            timer: 1500,
+                            timerProgressBar: true,
                             showConfirmButton: false,
+                        }).then(() => {
+                            if (json.cart_quantity === 0) location.reload();
                         });
                     }
                 });
@@ -143,7 +149,7 @@
         });
     });
 
-    // --- Actualizar totales al cambiar cantidad ---
+    // Actualizar catidad y total al cambiar el select
     document.querySelectorAll('select[name^="quantity_"]').forEach(select => {
         select.addEventListener('change', function () {
             const row   = this.closest('tr');
@@ -151,9 +157,8 @@
             const qty   = parseInt(this.value);
             const id    = row.dataset.id;
 
+            // Actualizar UI localmente
             document.getElementById(`total-${id}`).textContent = `$${(price * qty).toFixed(2)}`;
-
-            // recalcular total del carrito sumando todas las filas
             let total = 0;
             document.querySelectorAll('tr[data-price]').forEach(r => {
                 const p = parseFloat(r.dataset.price);
@@ -161,6 +166,20 @@
                 total += p * q;
             });
             document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+
+            // Persistir en la sesión via AJAX
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart_overview" %}',
+                data: {
+                    product_id: id,
+                    quantity: qty,
+                    csrfmiddlewaretoken: getCookie('csrftoken'),
+                },
+                success: function (json) {
+                    document.getElementById('cart-count').textContent = json.cart_quantity;
+                }
+            });
         });
     });
 </script>

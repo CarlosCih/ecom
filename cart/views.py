@@ -27,6 +27,17 @@ class CartView(View):
     def get(self, request):
         cart = Cart(request)
         return render(request, 'cart/carrito.html', {'cart': cart})
+    def post(self, request):
+        # Maneja la actualización de cantidades en el carrito desde el select de la vista del carrito
+        cart = Cart(request)
+        product_id = request.POST.get('product_id')
+        quantity = request.POST.get('quantity')
+        cart.update(product_id=product_id, quantity=quantity)
+        return JsonResponse({
+            'message': 'Cantidad actualizada',
+            'cart_quantity': len(cart),
+            'cart_total': str(cart.get_total_price()),
+        })
 
 def remove_from_cart(request):
     cart = Cart(request)

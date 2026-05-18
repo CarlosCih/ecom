@@ -1,11 +1,3 @@
-// funcion para obtener el token CSRF de las cookies
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return '';
-}
-
 // Evento para capturar el click en el botón "Agregar al carrito"
 $(document).on('click', '#atc', function(e) {
     const btn = $(this);

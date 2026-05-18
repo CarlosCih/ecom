@@ -12,3 +12,4 @@ class ProductAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name', 'description')
+    ordering = ('name',)
