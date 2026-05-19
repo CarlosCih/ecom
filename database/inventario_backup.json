@@ -1,0 +1,4414 @@
+[
+{
+  "model": "inventario.category",
+  "pk": 1,
+  "fields": {
+    "name": "Tecnología",
+    "description": "Productos tecnológicos",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.193Z",
+    "updated_at": "2026-05-18T12:52:35.193Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 2,
+  "fields": {
+    "name": "Computo",
+    "description": "Equipos de cómputo",
+    "parents": 1,
+    "created_at": "2026-05-18T12:52:35.193Z",
+    "updated_at": "2026-05-18T12:52:35.193Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 3,
+  "fields": {
+    "name": "Perifericos",
+    "description": "Accesorios y periféricos",
+    "parents": 2,
+    "created_at": "2026-05-18T12:52:35.196Z",
+    "updated_at": "2026-05-18T12:52:35.196Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 4,
+  "fields": {
+    "name": "Telefonia",
+    "description": "Celulares y accesorios",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 5,
+  "fields": {
+    "name": "Hogar",
+    "description": "Artículos para el hogar",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 6,
+  "fields": {
+    "name": "Cocina",
+    "description": "Utensilios y electrodomésticos",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 7,
+  "fields": {
+    "name": "Moda",
+    "description": "Ropa, calzado y accesorios",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 8,
+  "fields": {
+    "name": "Belleza",
+    "description": "Cuidado personal y cosmética",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 9,
+  "fields": {
+    "name": "Deportes",
+    "description": "Implementos deportivos",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 10,
+  "fields": {
+    "name": "Juguetes",
+    "description": "Juguetes y entretenimiento",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 11,
+  "fields": {
+    "name": "Automotriz",
+    "description": "Productos para autos y motos",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 12,
+  "fields": {
+    "name": "Supermercado",
+    "description": "Consumo diario y alimentos",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 13,
+  "fields": {
+    "name": "Mascotas",
+    "description": "Productos para mascotas",
+    "parents": null,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 14,
+  "fields": {
+    "name": "Laptops",
+    "description": "Portátiles de uso personal y profesional",
+    "parents": 2,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 15,
+  "fields": {
+    "name": "PC de Escritorio",
+    "description": "Computadores de escritorio",
+    "parents": 2,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 16,
+  "fields": {
+    "name": "Componentes PC",
+    "description": "CPU, RAM, SSD, GPU y más",
+    "parents": 2,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 17,
+  "fields": {
+    "name": "Monitores",
+    "description": "Monitores y pantallas",
+    "parents": 3,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 18,
+  "fields": {
+    "name": "Teclados",
+    "description": "Teclados mecánicos y membrana",
+    "parents": 3,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 19,
+  "fields": {
+    "name": "Mouse",
+    "description": "Mouse y apuntadores",
+    "parents": 3,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 20,
+  "fields": {
+    "name": "Impresoras",
+    "description": "Impresoras y multifuncionales",
+    "parents": 3,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 21,
+  "fields": {
+    "name": "Audio",
+    "description": "Parlantes y audífonos",
+    "parents": 1,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 22,
+  "fields": {
+    "name": "Camaras",
+    "description": "Cámaras fotográficas y video",
+    "parents": 1,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 23,
+  "fields": {
+    "name": "Wearables",
+    "description": "Relojes y bandas inteligentes",
+    "parents": 1,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 24,
+  "fields": {
+    "name": "TV y Video",
+    "description": "Televisores y proyectores",
+    "parents": 1,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 25,
+  "fields": {
+    "name": "Smartphones",
+    "description": "Teléfonos inteligentes de todas las gamas",
+    "parents": 4,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 26,
+  "fields": {
+    "name": "Fundas y Protectores",
+    "description": "Fundas y vidrios templados",
+    "parents": 4,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 27,
+  "fields": {
+    "name": "Cargadores y Cables",
+    "description": "Carga rápida y conectividad",
+    "parents": 4,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 28,
+  "fields": {
+    "name": "Audio Movil",
+    "description": "Audífonos y manos libres",
+    "parents": 4,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 29,
+  "fields": {
+    "name": "Muebles",
+    "description": "Muebles para sala, comedor y dormitorio",
+    "parents": 5,
+    "created_at": "2026-05-18T12:52:35.200Z",
+    "updated_at": "2026-05-18T12:52:35.200Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 30,
+  "fields": {
+    "name": "Decoracion",
+    "description": "Cuadros, lámparas y artículos decorativos",
+    "parents": 5,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 31,
+  "fields": {
+    "name": "Limpieza Hogar",
+    "description": "Productos e implementos de limpieza",
+    "parents": 5,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 32,
+  "fields": {
+    "name": "Organizacion",
+    "description": "Cajas, estantes y soluciones de orden",
+    "parents": 5,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 33,
+  "fields": {
+    "name": "Electrodomesticos Cocina",
+    "description": "Freidoras, licuadoras, microondas",
+    "parents": 6,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 34,
+  "fields": {
+    "name": "Utensilios Cocina",
+    "description": "Cuchillos, tablas y herramientas",
+    "parents": 6,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 35,
+  "fields": {
+    "name": "Vajilla",
+    "description": "Platos, vasos y cubiertos",
+    "parents": 6,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 36,
+  "fields": {
+    "name": "Almacenamiento Cocina",
+    "description": "Recipientes y organizadores",
+    "parents": 6,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 37,
+  "fields": {
+    "name": "Ropa Hombre",
+    "description": "Prendas y moda masculina",
+    "parents": 7,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 38,
+  "fields": {
+    "name": "Ropa Mujer",
+    "description": "Prendas y moda femenina",
+    "parents": 7,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 39,
+  "fields": {
+    "name": "Calzado",
+    "description": "Zapatos, tenis y sandalias",
+    "parents": 7,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 40,
+  "fields": {
+    "name": "Accesorios Moda",
+    "description": "Bolsos, cinturones y relojes",
+    "parents": 7,
+    "created_at": "2026-05-18T12:52:35.203Z",
+    "updated_at": "2026-05-18T12:52:35.203Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 41,
+  "fields": {
+    "name": "Maquillaje",
+    "description": "Bases, labiales y sombras",
+    "parents": 8,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 42,
+  "fields": {
+    "name": "Cuidado Facial",
+    "description": "Limpieza e hidratación facial",
+    "parents": 8,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 43,
+  "fields": {
+    "name": "Cuidado Capilar",
+    "description": "Shampoo, tratamientos y styling",
+    "parents": 8,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 44,
+  "fields": {
+    "name": "Perfumes",
+    "description": "Fragancias para hombre y mujer",
+    "parents": 8,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 45,
+  "fields": {
+    "name": "Fitness",
+    "description": "Pesas, bandas y accesorios de entrenamiento",
+    "parents": 9,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 46,
+  "fields": {
+    "name": "Futbol",
+    "description": "Balones, guayos y protecciones",
+    "parents": 9,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 47,
+  "fields": {
+    "name": "Ciclismo",
+    "description": "Bicicletas, cascos y accesorios",
+    "parents": 9,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 48,
+  "fields": {
+    "name": "Outdoor",
+    "description": "Camping, trekking y aventura",
+    "parents": 9,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 49,
+  "fields": {
+    "name": "Juguetes Bebe",
+    "description": "Estimulación temprana y primera infancia",
+    "parents": 10,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 50,
+  "fields": {
+    "name": "Juegos de Mesa",
+    "description": "Juegos familiares y de estrategia",
+    "parents": 10,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 51,
+  "fields": {
+    "name": "Figuras y Coleccionables",
+    "description": "Figuras de acción y colección",
+    "parents": 10,
+    "created_at": "2026-05-18T12:52:35.206Z",
+    "updated_at": "2026-05-18T12:52:35.206Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 52,
+  "fields": {
+    "name": "Juguetes Educativos",
+    "description": "Aprendizaje y desarrollo cognitivo",
+    "parents": 10,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 53,
+  "fields": {
+    "name": "Accesorios Auto",
+    "description": "Tapetes, fundas y gadgets para auto",
+    "parents": 11,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 54,
+  "fields": {
+    "name": "Herramientas Taller",
+    "description": "Herramientas para mantenimiento",
+    "parents": 11,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 55,
+  "fields": {
+    "name": "Lubricantes",
+    "description": "Aceites, aditivos y líquidos",
+    "parents": 11,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 56,
+  "fields": {
+    "name": "Repuestos",
+    "description": "Partes y repuestos para vehículos",
+    "parents": 11,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 57,
+  "fields": {
+    "name": "Despensa",
+    "description": "Arroz, pastas, granos y conservas",
+    "parents": 12,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 58,
+  "fields": {
+    "name": "Bebidas",
+    "description": "Gaseosas, jugos, agua y energizantes",
+    "parents": 12,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 59,
+  "fields": {
+    "name": "Snacks",
+    "description": "Galletas, papas y pasabocas",
+    "parents": 12,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 60,
+  "fields": {
+    "name": "Lacteos y Huevos",
+    "description": "Leche, yogur, quesos y huevos",
+    "parents": 12,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 61,
+  "fields": {
+    "name": "Alimento Perros",
+    "description": "Concentrado y comida húmeda para perros",
+    "parents": 13,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 62,
+  "fields": {
+    "name": "Alimento Gatos",
+    "description": "Concentrado y comida húmeda para gatos",
+    "parents": 13,
+    "created_at": "2026-05-18T12:52:35.210Z",
+    "updated_at": "2026-05-18T12:52:35.210Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 63,
+  "fields": {
+    "name": "Higiene Mascotas",
+    "description": "Arena, shampoo y limpieza",
+    "parents": 13,
+    "created_at": "2026-05-18T12:52:35.213Z",
+    "updated_at": "2026-05-18T12:52:35.213Z"
+  }
+},
+{
+  "model": "inventario.category",
+  "pk": 64,
+  "fields": {
+    "name": "Accesorios Mascotas",
+    "description": "Collares, camas, juguetes y correas",
+    "parents": 13,
+    "created_at": "2026-05-18T12:52:35.213Z",
+    "updated_at": "2026-05-18T12:52:35.213Z"
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 1,
+  "fields": {
+    "name": "Teclado Mecánico Red Switch",
+    "description": "Teclado mecánico con switches Red lineales, ideal para gaming intenso",
+    "price": 299.99,
+    "stock": 50,
+    "image": "products/teclado_B3cIGqr.jpg",
+    "slug": "teclado-mecanico-red",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:40:55.009Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 2,
+  "fields": {
+    "name": "Teclado Mecánico Blue Switch",
+    "description": "Teclado mecánico con switches Blue táctiles y audibles",
+    "price": 319.99,
+    "stock": 45,
+    "image": "products/Teclado_Mecánico_Blue_Switch.jpg",
+    "slug": "teclado-mecanico-blue",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T18:00:22.908Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 3,
+  "fields": {
+    "name": "Teclado Mecánico Brown Switch",
+    "description": "Switches Brown táctiles silenciosos, versátil para trabajo y gaming",
+    "price": 329.99,
+    "stock": 40,
+    "image": "products/Teclado_Mecánico_Brown_Switch.jpg",
+    "slug": "teclado-mecanico-brown",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:59:37.626Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 4,
+  "fields": {
+    "name": "Teclado Membrana USB",
+    "description": "Teclado de membrana silencioso, compatible con Windows y Mac",
+    "price": 89.99,
+    "stock": 100,
+    "image": "products/Teclado_Membrana_USB.jpg",
+    "slug": "teclado-membrana-usb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:58:51.442Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 5,
+  "fields": {
+    "name": "Teclado Inalámbrico Bluetooth",
+    "description": "Conexión Bluetooth 5.0, batería 3 meses de duración",
+    "price": 199.99,
+    "stock": 60,
+    "image": "products/Teclado_Inalámbrico_Bluetooth.jpg",
+    "slug": "teclado-inalambrico-bluetooth",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:57:51.981Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 6,
+  "fields": {
+    "name": "Teclado Gaming RGB Completo",
+    "description": "Retroiluminación RGB por tecla, anti-ghosting 100%",
+    "price": 449.99,
+    "stock": 35,
+    "image": "products/Teclado_Gaming_RGB_Completo.jpg",
+    "slug": "teclado-gaming-rgb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:57:21.236Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 7,
+  "fields": {
+    "name": "Teclado Compacto TKL",
+    "description": "Tamaño 80%, sin teclado numérico, ideal para escritorios pequeños",
+    "price": 259.99,
+    "stock": 55,
+    "image": "products/tkl.jpg",
+    "slug": "teclado-compacto-tkl",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:44:42.315Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 8,
+  "fields": {
+    "name": "Teclado Ergonómico Dividido",
+    "description": "Diseño ergonómico que reduce la tensión en muñecas",
+    "price": 349.99,
+    "stock": 25,
+    "image": "products/Teclado_Ergonómico_Dividido.jpg",
+    "slug": "teclado-ergonomico-dividido",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.056Z",
+    "updated_at": "2026-05-19T17:43:53.699Z",
+    "category": [
+      18
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 9,
+  "fields": {
+    "name": "Mouse Gaming 6400 DPI",
+    "description": "Sensor óptico 6400 DPI, 6 botones programables, RGB",
+    "price": 199.99,
+    "stock": 70,
+    "image": "products/Mouse_Gaming_6400_DPI.jpg",
+    "slug": "mouse-gaming-6400dpi",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-19T18:01:21.354Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 10,
+  "fields": {
+    "name": "Mouse Inalámbrico Ergonómico",
+    "description": "Receptor USB 2.4GHz, batería recargable, 3 niveles DPI",
+    "price": 299.99,
+    "stock": 65,
+    "image": "",
+    "slug": "mouse-inalambrico-ergonomico",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 11,
+  "fields": {
+    "name": "Mouse Básico USB",
+    "description": "Mouse óptico básico plug and play, 1000 DPI",
+    "price": 49.99,
+    "stock": 200,
+    "image": "",
+    "slug": "mouse-basico-usb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 12,
+  "fields": {
+    "name": "Mouse Vertical Ergonómico",
+    "description": "Diseño vertical reduce el síndrome del túnel carpiano",
+    "price": 249.99,
+    "stock": 40,
+    "image": "",
+    "slug": "mouse-vertical-ergonomico",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 13,
+  "fields": {
+    "name": "Mouse Gaming RGB 16000 DPI",
+    "description": "16000 DPI ajustable, polling rate 1000Hz, 8 botones",
+    "price": 279.99,
+    "stock": 50,
+    "image": "",
+    "slug": "mouse-gaming-rgb-16000dpi",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 14,
+  "fields": {
+    "name": "Mouse Bluetooth Portátil",
+    "description": "Ultra delgado, Bluetooth 5.0, compatible multi-SO",
+    "price": 159.99,
+    "stock": 80,
+    "image": "",
+    "slug": "mouse-bluetooth-portatil",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 15,
+  "fields": {
+    "name": "Mouse Trackball Inalámbrico",
+    "description": "Control de cursor preciso con trackball, sin mover el mouse",
+    "price": 329.99,
+    "stock": 20,
+    "image": "",
+    "slug": "mouse-trackball-inalambrico",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.113Z",
+    "updated_at": "2026-05-18T13:10:11.113Z",
+    "category": [
+      19
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 16,
+  "fields": {
+    "name": "Monitor 24\" Full HD IPS",
+    "description": "Panel IPS 1080p, tiempo de respuesta 5ms, 75Hz",
+    "price": 899.99,
+    "stock": 40,
+    "image": "",
+    "slug": "monitor-24-full-hd-ips",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-18T13:10:11.116Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 17,
+  "fields": {
+    "name": "Monitor 27\" QHD 144Hz",
+    "description": "2560x1440 QHD, 144Hz para gaming, panel IPS",
+    "price": 1499.99,
+    "stock": 30,
+    "image": "",
+    "slug": "monitor-27-qhd-144hz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-18T13:10:11.116Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 18,
+  "fields": {
+    "name": "Monitor 32\" 4K UHD",
+    "description": "3840x2160 4K, panel VA, HDR400, para diseño profesional",
+    "price": 2499.99,
+    "stock": 15,
+    "image": "",
+    "slug": "monitor-32-4k-uhd",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-18T13:10:11.116Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 19,
+  "fields": {
+    "name": "Monitor Curvo 27\" 165Hz",
+    "description": "Panel curvo 1500R, 165Hz, 1ms GTG, FreeSync Premium",
+    "price": 1699.99,
+    "stock": 25,
+    "image": "products/Monitor_Curvo_27inch_165Hz.jpg",
+    "slug": "monitor-curvo-27-165hz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-19T18:02:25.816Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 20,
+  "fields": {
+    "name": "Monitor Gaming 240Hz",
+    "description": "1080p 240Hz competitivo, 0.5ms, G-Sync Compatible",
+    "price": 1799.99,
+    "stock": 20,
+    "image": "",
+    "slug": "monitor-gaming-240hz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-18T13:10:11.116Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 21,
+  "fields": {
+    "name": "Monitor Portátil USB-C 15\"",
+    "description": "15.6\" 1080p, alimentado por USB-C, peso 800g",
+    "price": 899.99,
+    "stock": 35,
+    "image": "",
+    "slug": "monitor-portatil-usbc-15",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.116Z",
+    "updated_at": "2026-05-18T13:10:11.116Z",
+    "category": [
+      17
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 22,
+  "fields": {
+    "name": "Impresora Láser Monocromo",
+    "description": "30 páginas/min, conectividad WiFi, bandeja 250 hojas",
+    "price": 799.99,
+    "stock": 20,
+    "image": "",
+    "slug": "impresora-laser-monocromo",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.123Z",
+    "updated_at": "2026-05-18T13:10:11.123Z",
+    "category": [
+      20
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 23,
+  "fields": {
+    "name": "Impresora Tinta Color",
+    "description": "Impresión en color de alta calidad, WiFi, USB",
+    "price": 549.99,
+    "stock": 30,
+    "image": "",
+    "slug": "impresora-tinta-color",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.123Z",
+    "updated_at": "2026-05-18T13:10:11.123Z",
+    "category": [
+      20
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 24,
+  "fields": {
+    "name": "Multifuncional Imprime-Escanea-Copia",
+    "description": "3 en 1, WiFi, doble cara automático, LCD",
+    "price": 999.99,
+    "stock": 25,
+    "image": "",
+    "slug": "multifuncional-imprime-escanea",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.123Z",
+    "updated_at": "2026-05-18T13:10:11.123Z",
+    "category": [
+      20
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 25,
+  "fields": {
+    "name": "Impresora Fotográfica 6x4",
+    "description": "Impresión fotográfica sin PC, papel brillante incluido",
+    "price": 1299.99,
+    "stock": 15,
+    "image": "",
+    "slug": "impresora-fotografica-6x4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.123Z",
+    "updated_at": "2026-05-18T13:10:11.123Z",
+    "category": [
+      20
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 26,
+  "fields": {
+    "name": "Laptop Core i5 8GB 256GB SSD",
+    "description": "Intel Core i5-12450H, 8GB RAM, 256GB SSD, pantalla 15.6\" FHD",
+    "price": 5999.99,
+    "stock": 20,
+    "image": "",
+    "slug": "laptop-i5-8gb-256ssd",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 27,
+  "fields": {
+    "name": "Laptop Core i7 16GB 512GB SSD",
+    "description": "Intel Core i7-12700H, 16GB DDR5, 512GB NVMe, 15.6\" FHD IPS",
+    "price": 9999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "laptop-i7-16gb-512ssd",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 28,
+  "fields": {
+    "name": "Laptop Gamer RTX 3060 16GB",
+    "description": "Ryzen 7 6800H, RTX 3060, 16GB RAM, 1TB SSD, 144Hz",
+    "price": 14999.99,
+    "stock": 10,
+    "image": "",
+    "slug": "laptop-gamer-rtx3060-16gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 29,
+  "fields": {
+    "name": "Laptop Ultrabook 14\" Core i5",
+    "description": "Ultradelgada 14\" FHD, Core i5-1235U, 16GB, 512GB, 8h batería",
+    "price": 11999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "laptop-ultrabook-14-i5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 30,
+  "fields": {
+    "name": "Laptop MacBook Air M2 8GB 256GB",
+    "description": "Chip Apple M2, 8GB RAM unificada, 256GB SSD, pantalla Liquid Retina",
+    "price": 19999.99,
+    "stock": 8,
+    "image": "",
+    "slug": "laptop-macbook-air-m2",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 31,
+  "fields": {
+    "name": "Laptop Económica Celeron 4GB",
+    "description": "Intel Celeron N4020, 4GB RAM, 128GB eMMC, 14\" HD, liviana",
+    "price": 3499.99,
+    "stock": 30,
+    "image": "",
+    "slug": "laptop-economica-celeron-4gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 32,
+  "fields": {
+    "name": "Laptop 2 en 1 Táctil i5",
+    "description": "360° táctil, Core i5, 8GB RAM, 256GB SSD, stylus incluido",
+    "price": 8999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "laptop-2en1-tactil-i5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 33,
+  "fields": {
+    "name": "Laptop Chromebook 11\"",
+    "description": "Chrome OS, 4GB RAM, 64GB eMMC, 11\" HD, batería 12h",
+    "price": 2999.99,
+    "stock": 25,
+    "image": "",
+    "slug": "laptop-chromebook-11",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.126Z",
+    "updated_at": "2026-05-18T13:10:11.126Z",
+    "category": [
+      14
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 34,
+  "fields": {
+    "name": "PC Escritorio Core i5 16GB",
+    "description": "Intel Core i5-12400, 16GB DDR4, 500GB SSD, sin monitor",
+    "price": 6999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "pc-escritorio-i5-16gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.130Z",
+    "updated_at": "2026-05-18T13:10:11.130Z",
+    "category": [
+      15
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 35,
+  "fields": {
+    "name": "PC Escritorio Core i9 32GB",
+    "description": "Intel Core i9-13900, 32GB DDR5, 1TB NVMe, GPU integrada",
+    "price": 15999.99,
+    "stock": 8,
+    "image": "",
+    "slug": "pc-escritorio-i9-32gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.130Z",
+    "updated_at": "2026-05-18T13:10:11.130Z",
+    "category": [
+      15
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 36,
+  "fields": {
+    "name": "PC All-in-One 27\" FHD i7",
+    "description": "Todo en uno 27\" FHD, Core i7, 16GB, 512GB SSD, webcam",
+    "price": 11999.99,
+    "stock": 10,
+    "image": "",
+    "slug": "pc-aio-27-fhd-i7",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.130Z",
+    "updated_at": "2026-05-18T13:10:11.130Z",
+    "category": [
+      15
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 37,
+  "fields": {
+    "name": "Mini PC Intel NUC i5",
+    "description": "Compacto, Core i5, 8GB RAM, 256GB SSD, HDMI 4K",
+    "price": 4999.99,
+    "stock": 20,
+    "image": "products/Mini_PC_Intel_NUC_i5.jpg",
+    "slug": "mini-pc-intel-nuc-i5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.130Z",
+    "updated_at": "2026-05-19T18:03:07.976Z",
+    "category": [
+      15
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 38,
+  "fields": {
+    "name": "PC Gamer Ensamblado i7 RTX",
+    "description": "Core i7-13700K, RTX 4060, 32GB DDR5, 1TB SSD, RGB",
+    "price": 18999.99,
+    "stock": 7,
+    "image": "",
+    "slug": "pc-gamer-i7-rtx4060",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.130Z",
+    "updated_at": "2026-05-18T13:10:11.130Z",
+    "category": [
+      15
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 39,
+  "fields": {
+    "name": "Procesador Intel Core i5-13400",
+    "description": "10 núcleos (6P+4E), hasta 4.6GHz, socket LGA1700, incluye disipador",
+    "price": 2999.99,
+    "stock": 25,
+    "image": "",
+    "slug": "procesador-intel-i5-13400",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 40,
+  "fields": {
+    "name": "Procesador Intel Core i9-13900K",
+    "description": "24 núcleos, hasta 5.8GHz, desbloqueado para overclocking",
+    "price": 8999.99,
+    "stock": 10,
+    "image": "",
+    "slug": "procesador-intel-i9-13900k",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 41,
+  "fields": {
+    "name": "Procesador AMD Ryzen 5 7600X",
+    "description": "6 núcleos 12 hilos, hasta 5.3GHz, socket AM5",
+    "price": 3499.99,
+    "stock": 20,
+    "image": "",
+    "slug": "procesador-amd-ryzen5-7600x",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 42,
+  "fields": {
+    "name": "Memoria RAM 16GB DDR5 5200MHz",
+    "description": "Kit 2x8GB DDR5-5200, CL38, compatible Intel/AMD",
+    "price": 899.99,
+    "stock": 40,
+    "image": "",
+    "slug": "memoria-ram-16gb-ddr5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 43,
+  "fields": {
+    "name": "Memoria RAM 32GB DDR4 3200MHz",
+    "description": "Kit 2x16GB DDR4-3200, CL16, XMP 2.0",
+    "price": 1199.99,
+    "stock": 35,
+    "image": "",
+    "slug": "memoria-ram-32gb-ddr4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 44,
+  "fields": {
+    "name": "SSD 1TB NVMe PCIe 4.0",
+    "description": "Velocidad lectura 7000MB/s, escritura 6500MB/s, M.2 2280",
+    "price": 999.99,
+    "stock": 50,
+    "image": "",
+    "slug": "ssd-1tb-nvme-pcie4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 45,
+  "fields": {
+    "name": "GPU Nvidia RTX 4070 12GB",
+    "description": "12GB GDDR6X, DLSS 3, ray tracing, HDMI 2.1",
+    "price": 12999.99,
+    "stock": 8,
+    "image": "",
+    "slug": "gpu-nvidia-rtx4070-12gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 46,
+  "fields": {
+    "name": "Fuente Poder 750W 80+ Gold",
+    "description": "Modular, certificado 80 Plus Gold, 135mm ventilador silencioso",
+    "price": 799.99,
+    "stock": 30,
+    "image": "",
+    "slug": "fuente-poder-750w-gold",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.136Z",
+    "updated_at": "2026-05-18T13:10:11.136Z",
+    "category": [
+      16
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 47,
+  "fields": {
+    "name": "Audífonos Over-Ear Noise Cancelling",
+    "description": "ANC activo, 30h batería, plegables, estuche incluido",
+    "price": 1299.99,
+    "stock": 30,
+    "image": "",
+    "slug": "audifonos-over-ear-anc",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.140Z",
+    "updated_at": "2026-05-18T13:10:11.140Z",
+    "category": [
+      21
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 48,
+  "fields": {
+    "name": "Bocina Bluetooth 360° 20W",
+    "description": "Sonido 360°, resistente al agua IPX7, 12h batería",
+    "price": 499.99,
+    "stock": 55,
+    "image": "",
+    "slug": "bocina-bluetooth-360-20w",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.140Z",
+    "updated_at": "2026-05-18T13:10:11.140Z",
+    "category": [
+      21
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 49,
+  "fields": {
+    "name": "Soundbar 2.1 con Subwoofer 120W",
+    "description": "HDMI ARC, Bluetooth 5.0, bass boost, control remoto",
+    "price": 1499.99,
+    "stock": 20,
+    "image": "",
+    "slug": "soundbar-21-subwoofer-120w",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.140Z",
+    "updated_at": "2026-05-18T13:10:11.140Z",
+    "category": [
+      21
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 50,
+  "fields": {
+    "name": "Audífonos In-Ear Sport Inalámbricos",
+    "description": "Resistente al sudor IPX5, TWS, autonomía 6h + case 18h",
+    "price": 299.99,
+    "stock": 80,
+    "image": "",
+    "slug": "audifonos-inear-sport-tws",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.140Z",
+    "updated_at": "2026-05-18T13:10:11.140Z",
+    "category": [
+      21
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 51,
+  "fields": {
+    "name": "Barra de Sonido Surround 5.1",
+    "description": "Surround virtual 5.1, Dolby Atmos, HDMI ARC, 200W RMS",
+    "price": 2199.99,
+    "stock": 12,
+    "image": "",
+    "slug": "barra-sonido-surround-51",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.140Z",
+    "updated_at": "2026-05-18T13:10:11.140Z",
+    "category": [
+      21
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 52,
+  "fields": {
+    "name": "Cámara DSLR 24MP Kit 18-55mm",
+    "description": "Sensor APS-C 24MP, video Full HD, WiFi, visor óptico",
+    "price": 7999.99,
+    "stock": 10,
+    "image": "",
+    "slug": "camara-dslr-24mp-kit",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.146Z",
+    "updated_at": "2026-05-18T13:10:11.146Z",
+    "category": [
+      22
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 53,
+  "fields": {
+    "name": "Cámara Mirrorless Sony 33MP",
+    "description": "Full Frame 33MP, AF con IA, video 4K60fps, estabilización",
+    "price": 12999.99,
+    "stock": 7,
+    "image": "",
+    "slug": "camara-mirrorless-sony-33mp",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.146Z",
+    "updated_at": "2026-05-18T13:10:11.146Z",
+    "category": [
+      22
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 54,
+  "fields": {
+    "name": "Cámara de Acción 4K60fps",
+    "description": "4K60fps, resistente al agua 10m, pantalla táctil, HyperSmooth",
+    "price": 3999.99,
+    "stock": 20,
+    "image": "",
+    "slug": "camara-accion-4k60fps",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.146Z",
+    "updated_at": "2026-05-18T13:10:11.146Z",
+    "category": [
+      22
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 55,
+  "fields": {
+    "name": "Cámara Instantánea con Película",
+    "description": "Imprime en 10s, película incluida x10, flash automático",
+    "price": 1299.99,
+    "stock": 40,
+    "image": "",
+    "slug": "camara-instantanea-pelicula",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.146Z",
+    "updated_at": "2026-05-18T13:10:11.146Z",
+    "category": [
+      22
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 56,
+  "fields": {
+    "name": "Cámara Web 4K USB-C Streaming",
+    "description": "4K 30fps, micrófono dual integrado, campo visual 90°",
+    "price": 899.99,
+    "stock": 35,
+    "image": "",
+    "slug": "camara-web-4k-usbc",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.146Z",
+    "updated_at": "2026-05-18T13:10:11.146Z",
+    "category": [
+      22
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 57,
+  "fields": {
+    "name": "Smartwatch Samsung Galaxy Watch 6",
+    "description": "1.5\" AMOLED, monitoreo salud 24/7, NFC, GPS, 40h batería",
+    "price": 1999.99,
+    "stock": 25,
+    "image": "",
+    "slug": "smartwatch-samsung-galaxy-w6",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.150Z",
+    "updated_at": "2026-05-18T13:10:11.150Z",
+    "category": [
+      23
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 58,
+  "fields": {
+    "name": "Apple Watch Series 9 41mm",
+    "description": "Chip S9, pantalla siempre activa, ECG, detección caídas",
+    "price": 5999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "apple-watch-series9-41mm",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.150Z",
+    "updated_at": "2026-05-18T13:10:11.150Z",
+    "category": [
+      23
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 59,
+  "fields": {
+    "name": "Banda Fitness Xiaomi Band 8",
+    "description": "AMOLED 1.62\", SpO2, frecuencia cardiaca, 16 días batería",
+    "price": 499.99,
+    "stock": 70,
+    "image": "",
+    "slug": "banda-fitness-xiaomi-band8",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.150Z",
+    "updated_at": "2026-05-18T13:10:11.150Z",
+    "category": [
+      23
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 60,
+  "fields": {
+    "name": "Smartwatch Garmin GPS Running",
+    "description": "GPS multicanal, mapas precargados, batería 14 días, ANT+",
+    "price": 3499.99,
+    "stock": 15,
+    "image": "",
+    "slug": "smartwatch-garmin-gps-running",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.150Z",
+    "updated_at": "2026-05-18T13:10:11.150Z",
+    "category": [
+      23
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 61,
+  "fields": {
+    "name": "Televisor 55\" 4K Smart TV UHD",
+    "description": "4K Ultra HD, Smart TV Android, HDR10+, Dolby Vision, 60Hz",
+    "price": 7999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "televisor-55-4k-smart-uhd",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.156Z",
+    "updated_at": "2026-05-18T13:10:11.156Z",
+    "category": [
+      24
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 62,
+  "fields": {
+    "name": "Televisor 65\" OLED 4K",
+    "description": "Panel OLED, negros perfectos, 120Hz, HDMI 2.1, webOS",
+    "price": 19999.99,
+    "stock": 5,
+    "image": "",
+    "slug": "televisor-65-oled-4k",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.156Z",
+    "updated_at": "2026-05-18T13:10:11.156Z",
+    "category": [
+      24
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 63,
+  "fields": {
+    "name": "Proyector Full HD 3000 Lúmenes",
+    "description": "1080p nativo, 3000 lumens, HDMI x2, USB, altavoz integrado",
+    "price": 4999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "proyector-full-hd-3000lm",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.156Z",
+    "updated_at": "2026-05-18T13:10:11.156Z",
+    "category": [
+      24
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 64,
+  "fields": {
+    "name": "Televisor 43\" Full HD Smart",
+    "description": "1080p, Smart TV, WiFi, HDMI x3, USB x2, control de voz",
+    "price": 3999.99,
+    "stock": 20,
+    "image": "",
+    "slug": "televisor-43-fhd-smart",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.156Z",
+    "updated_at": "2026-05-18T13:10:11.156Z",
+    "category": [
+      24
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 65,
+  "fields": {
+    "name": "Televisor 75\" QLED 4K 120Hz",
+    "description": "QLED 4K, 120Hz, Quantum HDR, compatible con Alexa/Google",
+    "price": 24999.99,
+    "stock": 5,
+    "image": "",
+    "slug": "televisor-75-qled-4k-120hz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.156Z",
+    "updated_at": "2026-05-18T13:10:11.156Z",
+    "category": [
+      24
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 66,
+  "fields": {
+    "name": "Samsung Galaxy S24 256GB",
+    "description": "Snapdragon 8 Gen 3, cámara 50MP, 6.1\" Dynamic AMOLED 2X",
+    "price": 13999.99,
+    "stock": 20,
+    "image": "",
+    "slug": "samsung-galaxy-s24-256gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 67,
+  "fields": {
+    "name": "iPhone 15 Pro Max 256GB",
+    "description": "Chip A17 Pro, titanio, cámara 48MP ProRAW, USB-C 3.0",
+    "price": 24999.99,
+    "stock": 10,
+    "image": "",
+    "slug": "iphone-15-pro-max-256gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 68,
+  "fields": {
+    "name": "Xiaomi Redmi Note 13 128GB",
+    "description": "Snapdragon 685, cámara 108MP, 6.67\" AMOLED, 5000mAh",
+    "price": 3499.99,
+    "stock": 40,
+    "image": "",
+    "slug": "xiaomi-redmi-note13-128gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 69,
+  "fields": {
+    "name": "Motorola Edge 40 256GB",
+    "description": "Dimensity 8020, OLED 144Hz, 68W carga rápida, IP68",
+    "price": 6999.99,
+    "stock": 25,
+    "image": "",
+    "slug": "motorola-edge40-256gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 70,
+  "fields": {
+    "name": "Google Pixel 8 128GB",
+    "description": "Chip Tensor G3, cámara computacional, 7 años actualizaciones",
+    "price": 14999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "google-pixel8-128gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 71,
+  "fields": {
+    "name": "Samsung Galaxy A55 256GB",
+    "description": "Exynos 1480, AMOLED 120Hz, triple cámara 50MP, IP67",
+    "price": 6499.99,
+    "stock": 30,
+    "image": "",
+    "slug": "samsung-galaxy-a55-256gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 72,
+  "fields": {
+    "name": "iPhone 14 128GB",
+    "description": "Chip A15 Bionic, 6.1\" Super Retina XDR, modo cinematic",
+    "price": 17999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "iphone-14-128gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 73,
+  "fields": {
+    "name": "Xiaomi POCO X6 Pro 256GB",
+    "description": "Dimensity 8300-Ultra, 64MP, carga 67W, pantalla 120Hz",
+    "price": 4999.99,
+    "stock": 35,
+    "image": "",
+    "slug": "xiaomi-poco-x6-pro-256gb",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.160Z",
+    "updated_at": "2026-05-18T13:10:11.160Z",
+    "category": [
+      25
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 74,
+  "fields": {
+    "name": "Funda iPhone 15 Silicona Líquida",
+    "description": "Silicona líquida suave, antihuella, compatible MagSafe",
+    "price": 149.99,
+    "stock": 80,
+    "image": "",
+    "slug": "funda-iphone15-silicona-liquida",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.163Z",
+    "updated_at": "2026-05-18T13:10:11.163Z",
+    "category": [
+      26
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 75,
+  "fields": {
+    "name": "Funda Samsung S24 TPU Transparente",
+    "description": "TPU flexible anti-amarillamiento, bordes elevados, slim",
+    "price": 129.99,
+    "stock": 90,
+    "image": "",
+    "slug": "funda-samsung-s24-tpu-trans",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.163Z",
+    "updated_at": "2026-05-18T13:10:11.163Z",
+    "category": [
+      26
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 76,
+  "fields": {
+    "name": "Vidrio Templado 9H Universal 6.7\"",
+    "description": "Dureza 9H, transmisión luz 99.9%, pack x2",
+    "price": 99.99,
+    "stock": 150,
+    "image": "",
+    "slug": "vidrio-templado-9h-universal",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.163Z",
+    "updated_at": "2026-05-18T13:10:11.163Z",
+    "category": [
+      26
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 77,
+  "fields": {
+    "name": "Funda Cartera con Tarjetero",
+    "description": "Cuero PU, 3 ranuras tarjetas, cierre magnético",
+    "price": 199.99,
+    "stock": 60,
+    "image": "",
+    "slug": "funda-cartera-tarjetero",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.163Z",
+    "updated_at": "2026-05-18T13:10:11.163Z",
+    "category": [
+      26
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 78,
+  "fields": {
+    "name": "Funda Antigolpes Military Grade",
+    "description": "Protección caída 4 metros, bordes de absorción de impacto",
+    "price": 179.99,
+    "stock": 70,
+    "image": "",
+    "slug": "funda-antigolpes-military",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.163Z",
+    "updated_at": "2026-05-18T13:10:11.163Z",
+    "category": [
+      26
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 79,
+  "fields": {
+    "name": "Cargador Rápido 65W GaN USB-C",
+    "description": "GaN 65W, carga iPhone/Android/laptop, compacto",
+    "price": 249.99,
+    "stock": 60,
+    "image": "",
+    "slug": "cargador-rapido-65w-gan-usbc",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.170Z",
+    "updated_at": "2026-05-18T13:10:11.170Z",
+    "category": [
+      27
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 80,
+  "fields": {
+    "name": "Cargador Inalámbrico Qi 15W",
+    "description": "Qi 15W MagSafe compatible, indicador LED, anti-calor",
+    "price": 299.99,
+    "stock": 50,
+    "image": "",
+    "slug": "cargador-inalambrico-qi-15w",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.170Z",
+    "updated_at": "2026-05-18T13:10:11.170Z",
+    "category": [
+      27
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 81,
+  "fields": {
+    "name": "Cable USB-C a USB-C 2m Nylon",
+    "description": "100W carga rápida, trenzado nylon, resistente a 20,000 dobleces",
+    "price": 149.99,
+    "stock": 100,
+    "image": "",
+    "slug": "cable-usbc-usbc-2m-nylon",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.170Z",
+    "updated_at": "2026-05-18T13:10:11.170Z",
+    "category": [
+      27
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 82,
+  "fields": {
+    "name": "Power Bank 20000mAh 65W PD",
+    "description": "65W PD, carga rápida, LCD capacidad, 3 salidas simultáneas",
+    "price": 599.99,
+    "stock": 40,
+    "image": "",
+    "slug": "powerbank-20000mah-65w-pd",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.170Z",
+    "updated_at": "2026-05-18T13:10:11.170Z",
+    "category": [
+      27
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 83,
+  "fields": {
+    "name": "Cargador Auto 30W USB-C + USB-A",
+    "description": "Dual puerto, PD 30W + QC 3.0, compacto, LED indicador",
+    "price": 149.99,
+    "stock": 80,
+    "image": "",
+    "slug": "cargador-auto-30w-dual",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.170Z",
+    "updated_at": "2026-05-18T13:10:11.170Z",
+    "category": [
+      27
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 84,
+  "fields": {
+    "name": "AirPods Pro 2da Generación",
+    "description": "ANC adaptativo, modo transparencia, chip H2, USB-C, IP54",
+    "price": 3999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "airpods-pro-2da-generacion",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.173Z",
+    "updated_at": "2026-05-18T13:10:11.173Z",
+    "category": [
+      28
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 85,
+  "fields": {
+    "name": "Samsung Galaxy Buds 2 Pro",
+    "description": "ANC 3 micrófonos, Dolby Atmos, 360 Audio, batería 8h",
+    "price": 1299.99,
+    "stock": 25,
+    "image": "",
+    "slug": "samsung-galaxy-buds2-pro",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.173Z",
+    "updated_at": "2026-05-18T13:10:11.173Z",
+    "category": [
+      28
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 86,
+  "fields": {
+    "name": "Audífonos TWS Xiaomi Buds 4",
+    "description": "ANC 40dB, Bluetooth 5.3, 8h batería, IP54 resistente",
+    "price": 399.99,
+    "stock": 55,
+    "image": "",
+    "slug": "audifonos-tws-xiaomi-buds4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.173Z",
+    "updated_at": "2026-05-18T13:10:11.173Z",
+    "category": [
+      28
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 87,
+  "fields": {
+    "name": "Audífonos Bluetooth Deportivos",
+    "description": "Over-ear deportivos, banda cervical, IP67, 10h autonomía",
+    "price": 299.99,
+    "stock": 45,
+    "image": "",
+    "slug": "audifonos-bluetooth-deportivos",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.173Z",
+    "updated_at": "2026-05-18T13:10:11.173Z",
+    "category": [
+      28
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 88,
+  "fields": {
+    "name": "Sofá 3 Puestos Tela Gris",
+    "description": "Tela antimanchas, espuma alta densidad, patas madera",
+    "price": 4999.99,
+    "stock": 8,
+    "image": "",
+    "slug": "sofa-3-puestos-tela-gris",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.176Z",
+    "updated_at": "2026-05-18T13:10:11.176Z",
+    "category": [
+      29
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 89,
+  "fields": {
+    "name": "Mesa de Centro Madera MDF",
+    "description": "MDF con chapa nogal, 120x60cm, 2 cajones",
+    "price": 1999.99,
+    "stock": 12,
+    "image": "",
+    "slug": "mesa-centro-madera-mdf",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.176Z",
+    "updated_at": "2026-05-18T13:10:11.176Z",
+    "category": [
+      29
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 90,
+  "fields": {
+    "name": "Cama Queen Base Madera 160cm",
+    "description": "Madera sólida, cabecero acolchado, incluye somier",
+    "price": 5999.99,
+    "stock": 6,
+    "image": "",
+    "slug": "cama-queen-madera-160cm",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.176Z",
+    "updated_at": "2026-05-18T13:10:11.176Z",
+    "category": [
+      29
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 91,
+  "fields": {
+    "name": "Librero 5 Estantes MDF",
+    "description": "80x180cm, 5 estantes ajustables, color blanco/negro",
+    "price": 1499.99,
+    "stock": 15,
+    "image": "",
+    "slug": "librero-5-estantes-mdf",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.176Z",
+    "updated_at": "2026-05-18T13:10:11.176Z",
+    "category": [
+      29
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 92,
+  "fields": {
+    "name": "Escritorio Esquinero Madera",
+    "description": "Forma L, 140x120cm, cajón y estante lateral",
+    "price": 2499.99,
+    "stock": 10,
+    "image": "",
+    "slug": "escritorio-esquinero-madera",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.176Z",
+    "updated_at": "2026-05-18T13:10:11.176Z",
+    "category": [
+      29
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 93,
+  "fields": {
+    "name": "Cuadro Abstracto Canvas 80x60cm",
+    "description": "Impresión en canvas, bastidor madera, listo para colgar",
+    "price": 599.99,
+    "stock": 20,
+    "image": "",
+    "slug": "cuadro-abstracto-canvas-80x60",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.183Z",
+    "updated_at": "2026-05-18T13:10:11.183Z",
+    "category": [
+      30
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 94,
+  "fields": {
+    "name": "Lámpara de Pie LED Regulable",
+    "description": "LED 12W regulable, 3 temperaturas de color, USB carga",
+    "price": 799.99,
+    "stock": 18,
+    "image": "",
+    "slug": "lampara-pie-led-regulable",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.183Z",
+    "updated_at": "2026-05-18T13:10:11.183Z",
+    "category": [
+      30
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 95,
+  "fields": {
+    "name": "Set 4 Cojines Decorativos",
+    "description": "Funda algodón 45x45cm, varios colores, lavable",
+    "price": 299.99,
+    "stock": 35,
+    "image": "",
+    "slug": "set-4-cojines-decorativos",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.183Z",
+    "updated_at": "2026-05-18T13:10:11.183Z",
+    "category": [
+      30
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 96,
+  "fields": {
+    "name": "Espejo Decorativo Marco Dorado",
+    "description": "Forma hexagonal, marco metálico dorado, 80cm diámetro",
+    "price": 899.99,
+    "stock": 10,
+    "image": "",
+    "slug": "espejo-decorativo-marco-dorado",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.183Z",
+    "updated_at": "2026-05-18T13:10:11.183Z",
+    "category": [
+      30
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 97,
+  "fields": {
+    "name": "Aspiradora Vertical sin Cable 22V",
+    "description": "22V, filtro HEPA, 2 en 1 vertical/portátil, 45min batería",
+    "price": 1299.99,
+    "stock": 20,
+    "image": "",
+    "slug": "aspiradora-vertical-22v",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.186Z",
+    "updated_at": "2026-05-18T13:10:11.186Z",
+    "category": [
+      31
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 98,
+  "fields": {
+    "name": "Mopa Microfibra con Cubo Escurridor",
+    "description": "Cubo con escurridor a pedal, repuesto microfibra incluido",
+    "price": 199.99,
+    "stock": 40,
+    "image": "",
+    "slug": "mopa-microfibra-cubo-escurridor",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.186Z",
+    "updated_at": "2026-05-18T13:10:11.186Z",
+    "category": [
+      31
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 99,
+  "fields": {
+    "name": "Robot Aspirador y Fregador Wi-Fi",
+    "description": "LiDAR mapping, mapa multi-piso, app, compatible Alexa",
+    "price": 3499.99,
+    "stock": 10,
+    "image": "",
+    "slug": "robot-aspirador-fregador-wifi",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.186Z",
+    "updated_at": "2026-05-18T13:10:11.186Z",
+    "category": [
+      31
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 100,
+  "fields": {
+    "name": "Set Limpieza Baño 5 Piezas",
+    "description": "Escobilla, porta escobilla, jabonera, vaso, toallero",
+    "price": 149.99,
+    "stock": 60,
+    "image": "",
+    "slug": "set-limpieza-bano-5-piezas",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.186Z",
+    "updated_at": "2026-05-18T13:10:11.186Z",
+    "category": [
+      31
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 101,
+  "fields": {
+    "name": "Organizador Closet 20 Divisiones",
+    "description": "Tela no tejida, 20 celdas, cuelga en barra closet",
+    "price": 299.99,
+    "stock": 50,
+    "image": "",
+    "slug": "organizador-closet-20div",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.190Z",
+    "updated_at": "2026-05-18T13:10:11.190Z",
+    "category": [
+      32
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 102,
+  "fields": {
+    "name": "Cajas Plástico Transparente x3",
+    "description": "Set 3 cajas apilables con tapa, 15L cada una",
+    "price": 199.99,
+    "stock": 45,
+    "image": "",
+    "slug": "cajas-plastico-transparente-x3",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.190Z",
+    "updated_at": "2026-05-18T13:10:11.190Z",
+    "category": [
+      32
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 103,
+  "fields": {
+    "name": "Estante Metálico 5 Niveles",
+    "description": "Acero lacado, 90x180cm, soporta 80kg/nivel, fácil armado",
+    "price": 899.99,
+    "stock": 12,
+    "image": "",
+    "slug": "estante-metalico-5-niveles",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.190Z",
+    "updated_at": "2026-05-18T13:10:11.190Z",
+    "category": [
+      32
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 104,
+  "fields": {
+    "name": "Freidora de Aire Digital 5.5L",
+    "description": "Digital táctil, 5.5L, 1800W, 8 programas preestablecidos",
+    "price": 899.99,
+    "stock": 30,
+    "image": "",
+    "slug": "freidora-aire-digital-55l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.193Z",
+    "updated_at": "2026-05-18T13:10:11.193Z",
+    "category": [
+      33
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 105,
+  "fields": {
+    "name": "Licuadora de Vaso 600W 2L",
+    "description": "600W, vaso 2L Tritan irrompible, 3 velocidades + pulso",
+    "price": 499.99,
+    "stock": 40,
+    "image": "",
+    "slug": "licuadora-vaso-600w-2l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.193Z",
+    "updated_at": "2026-05-18T13:10:11.193Z",
+    "category": [
+      33
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 106,
+  "fields": {
+    "name": "Microondas Digital 25L 900W",
+    "description": "900W, 25L, 10 niveles potencia, grill, display LED",
+    "price": 799.99,
+    "stock": 25,
+    "image": "",
+    "slug": "microondas-digital-25l-900w",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.193Z",
+    "updated_at": "2026-05-18T13:10:11.193Z",
+    "category": [
+      33
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 107,
+  "fields": {
+    "name": "Cafetera Espresso 15 Bar",
+    "description": "Bomba 15 bar, vapor para espumar leche, 1450W, depósito 1.8L",
+    "price": 1299.99,
+    "stock": 18,
+    "image": "",
+    "slug": "cafetera-espresso-15bar",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.193Z",
+    "updated_at": "2026-05-18T13:10:11.193Z",
+    "category": [
+      33
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 108,
+  "fields": {
+    "name": "Tostadora 4 Ranuras 1500W",
+    "description": "4 ranuras anchas, 7 niveles tostado, bandeja desmontable",
+    "price": 349.99,
+    "stock": 35,
+    "image": "",
+    "slug": "tostadora-4-ranuras-1500w",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.193Z",
+    "updated_at": "2026-05-18T13:10:11.193Z",
+    "category": [
+      33
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 109,
+  "fields": {
+    "name": "Set Cuchillos Acero Inox 7 Piezas",
+    "description": "Acero inoxidable 1.4116, mango ergonómico, bloque madera",
+    "price": 599.99,
+    "stock": 20,
+    "image": "",
+    "slug": "set-cuchillos-acero-inox-7pz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.200Z",
+    "updated_at": "2026-05-18T13:10:11.200Z",
+    "category": [
+      34
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 110,
+  "fields": {
+    "name": "Tabla de Corte Bambú Antideslizante",
+    "description": "Bambú orgánico 38x28cm, antideslizante, antimicrobial",
+    "price": 199.99,
+    "stock": 45,
+    "image": "",
+    "slug": "tabla-corte-bambu-anti",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.200Z",
+    "updated_at": "2026-05-18T13:10:11.200Z",
+    "category": [
+      34
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 111,
+  "fields": {
+    "name": "Wok Antiadherente 32cm Inducción",
+    "description": "Recubrimiento cerámico antiadherente, apta inducción/gas",
+    "price": 349.99,
+    "stock": 30,
+    "image": "",
+    "slug": "wok-antiadherente-32cm-ind",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.200Z",
+    "updated_at": "2026-05-18T13:10:11.200Z",
+    "category": [
+      34
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 112,
+  "fields": {
+    "name": "Rallador Multiusos 6 Caras",
+    "description": "Acero inox, 6 superficies rallado, base antideslizante",
+    "price": 99.99,
+    "stock": 60,
+    "image": "",
+    "slug": "rallador-multiusos-6-caras",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.200Z",
+    "updated_at": "2026-05-18T13:10:11.200Z",
+    "category": [
+      34
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 113,
+  "fields": {
+    "name": "Vajilla Cerámica 12 Piezas",
+    "description": "4 platos hondo, 4 llano, 4 postre, apta lavavajillas",
+    "price": 699.99,
+    "stock": 15,
+    "image": "",
+    "slug": "vajilla-ceramica-12-piezas",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.203Z",
+    "updated_at": "2026-05-18T13:10:11.203Z",
+    "category": [
+      35
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 114,
+  "fields": {
+    "name": "Set Vasos Cristal Soplado x6",
+    "description": "Cristal soplado artesanal, capacidad 350ml, libre de plomo",
+    "price": 299.99,
+    "stock": 25,
+    "image": "",
+    "slug": "set-vasos-cristal-soplado-x6",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.203Z",
+    "updated_at": "2026-05-18T13:10:11.203Z",
+    "category": [
+      35
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 115,
+  "fields": {
+    "name": "Cubiertos Acero Inox 24 Piezas",
+    "description": "18/10 acero inox, set 6 personas, caja regalo incluida",
+    "price": 399.99,
+    "stock": 20,
+    "image": "",
+    "slug": "cubiertos-acero-inox-24pz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.203Z",
+    "updated_at": "2026-05-18T13:10:11.203Z",
+    "category": [
+      35
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 116,
+  "fields": {
+    "name": "Tazas Café Porcelana Set x4",
+    "description": "Porcelana 280ml, aptas microondas y lavavajillas, regalo",
+    "price": 199.99,
+    "stock": 35,
+    "image": "",
+    "slug": "tazas-cafe-porcelana-x4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.203Z",
+    "updated_at": "2026-05-18T13:10:11.203Z",
+    "category": [
+      35
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 117,
+  "fields": {
+    "name": "Set Recipientes Herméticos x5",
+    "description": "Vidrio borosilicato, tapas hermética, apto freezer/micro",
+    "price": 249.99,
+    "stock": 30,
+    "image": "",
+    "slug": "recipientes-hermeticos-vidrio-x5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.206Z",
+    "updated_at": "2026-05-18T13:10:11.206Z",
+    "category": [
+      36
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 118,
+  "fields": {
+    "name": "Organizador Especiero 16 Frascos",
+    "description": "16 frascos especiero 150ml, estante metálico giratorio",
+    "price": 179.99,
+    "stock": 25,
+    "image": "",
+    "slug": "organizador-especiero-16fr",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.206Z",
+    "updated_at": "2026-05-18T13:10:11.206Z",
+    "category": [
+      36
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 119,
+  "fields": {
+    "name": "Bolsas Vacío Reutilizables x10",
+    "description": "Cierre zip reforzado, compatible bomba de vacío manual",
+    "price": 199.99,
+    "stock": 40,
+    "image": "",
+    "slug": "bolsas-vacio-reutilizables-x10",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.206Z",
+    "updated_at": "2026-05-18T13:10:11.206Z",
+    "category": [
+      36
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 120,
+  "fields": {
+    "name": "Polo Básico Algodón 100%",
+    "description": "Algodón peinado 180g, cuello redondo, tallas S-XXL",
+    "price": 149.99,
+    "stock": 100,
+    "image": "",
+    "slug": "polo-basico-algodon-100",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.210Z",
+    "updated_at": "2026-05-18T13:10:11.210Z",
+    "category": [
+      37
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 121,
+  "fields": {
+    "name": "Jeans Slim Fit Azul Oscuro",
+    "description": "Denim 98% algodón, corte slim, tiro medio, elástico",
+    "price": 399.99,
+    "stock": 60,
+    "image": "",
+    "slug": "jeans-slim-fit-azul-oscuro",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.210Z",
+    "updated_at": "2026-05-18T13:10:11.210Z",
+    "category": [
+      37
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 122,
+  "fields": {
+    "name": "Camisa Formal Oxford Blanca",
+    "description": "Oxford 100% algodón, corte regular, botonadura completa",
+    "price": 299.99,
+    "stock": 50,
+    "image": "",
+    "slug": "camisa-formal-oxford-blanca",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.210Z",
+    "updated_at": "2026-05-18T13:10:11.210Z",
+    "category": [
+      37
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 123,
+  "fields": {
+    "name": "Chaqueta Bomber Poliéster",
+    "description": "Interior polar, cierre metálico, bolsillos laterales",
+    "price": 699.99,
+    "stock": 30,
+    "image": "",
+    "slug": "chaqueta-bomber-poliester",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.210Z",
+    "updated_at": "2026-05-18T13:10:11.210Z",
+    "category": [
+      37
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 124,
+  "fields": {
+    "name": "Short Deportivo Dry-Fit",
+    "description": "Tela dry-fit transpirable, elástico y cordón, bolsillo",
+    "price": 199.99,
+    "stock": 70,
+    "image": "",
+    "slug": "short-deportivo-dry-fit",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.210Z",
+    "updated_at": "2026-05-18T13:10:11.210Z",
+    "category": [
+      37
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 125,
+  "fields": {
+    "name": "Blusa Floral Gasa",
+    "description": "Gasa 100% poliéster, cuello V, manga corta, varios colores",
+    "price": 199.99,
+    "stock": 80,
+    "image": "",
+    "slug": "blusa-floral-gasa",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.216Z",
+    "updated_at": "2026-05-18T13:10:11.216Z",
+    "category": [
+      38
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 126,
+  "fields": {
+    "name": "Vestido Casual Midi Verano",
+    "description": "Tela fluida, sin mangas, cintura elástica, estampado floral",
+    "price": 349.99,
+    "stock": 50,
+    "image": "",
+    "slug": "vestido-casual-midi-verano",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.216Z",
+    "updated_at": "2026-05-18T13:10:11.216Z",
+    "category": [
+      38
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 127,
+  "fields": {
+    "name": "Leggins Deportivos Tiro Alto",
+    "description": "Compresión 4-way stretch, tiro alto, bolsillo lateral",
+    "price": 199.99,
+    "stock": 90,
+    "image": "",
+    "slug": "leggins-deportivos-tiro-alto",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.216Z",
+    "updated_at": "2026-05-18T13:10:11.216Z",
+    "category": [
+      38
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 128,
+  "fields": {
+    "name": "Blazer Elegante Entallado",
+    "description": "Tela sarga, corte entallado, forro interior, 2 botones",
+    "price": 799.99,
+    "stock": 25,
+    "image": "",
+    "slug": "blazer-elegante-entallado",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.216Z",
+    "updated_at": "2026-05-18T13:10:11.216Z",
+    "category": [
+      38
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 129,
+  "fields": {
+    "name": "Falda Midi Plisada",
+    "description": "Satén suave, cintura elástica, plisado completo, midi",
+    "price": 299.99,
+    "stock": 40,
+    "image": "",
+    "slug": "falda-midi-plisada",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.216Z",
+    "updated_at": "2026-05-18T13:10:11.216Z",
+    "category": [
+      38
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 130,
+  "fields": {
+    "name": "Tenis Running Hombre Amortiguado",
+    "description": "Suela EVA amortiguada, upper mesh transpirable, tallas 38-46",
+    "price": 599.99,
+    "stock": 40,
+    "image": "",
+    "slug": "tenis-running-hombre-amort",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.220Z",
+    "updated_at": "2026-05-18T13:10:11.220Z",
+    "category": [
+      39
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 131,
+  "fields": {
+    "name": "Zapatos Formales Cuero Genuino",
+    "description": "Cuero bovino genuino, suela cuero, plantilla acolchada",
+    "price": 799.99,
+    "stock": 20,
+    "image": "",
+    "slug": "zapatos-formales-cuero-genuino",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.220Z",
+    "updated_at": "2026-05-18T13:10:11.220Z",
+    "category": [
+      39
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 132,
+  "fields": {
+    "name": "Sandalias Mujer Tacón Bajo",
+    "description": "Correa ajustable, tacón 4cm, tiras cruzadas, varios colores",
+    "price": 299.99,
+    "stock": 45,
+    "image": "",
+    "slug": "sandalias-mujer-tacon-bajo",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.220Z",
+    "updated_at": "2026-05-18T13:10:11.220Z",
+    "category": [
+      39
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 133,
+  "fields": {
+    "name": "Botas Caña Alta Mujer",
+    "description": "Caña alta 35cm, cierre lateral, suela antideslizante",
+    "price": 899.99,
+    "stock": 18,
+    "image": "",
+    "slug": "botas-cana-alta-mujer",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.220Z",
+    "updated_at": "2026-05-18T13:10:11.220Z",
+    "category": [
+      39
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 134,
+  "fields": {
+    "name": "Bolso Cuero PU Mujer Tote",
+    "description": "Cuero PU suave, asa larga + corta, bolsillos interiores",
+    "price": 699.99,
+    "stock": 25,
+    "image": "",
+    "slug": "bolso-cuero-pu-mujer-tote",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.223Z",
+    "updated_at": "2026-05-18T13:10:11.223Z",
+    "category": [
+      40
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 135,
+  "fields": {
+    "name": "Cinturón Cuero Genuino Hombre",
+    "description": "Cuero genuino 100%, hebilla níquel, ancho 3.5cm, tallas",
+    "price": 249.99,
+    "stock": 40,
+    "image": "",
+    "slug": "cinturon-cuero-genuino-hombre",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.223Z",
+    "updated_at": "2026-05-18T13:10:11.223Z",
+    "category": [
+      40
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 136,
+  "fields": {
+    "name": "Reloj Análogo Acero Clásico",
+    "description": "Mecanismo japonés, correa acero 316L, cristal mineral 5ATM",
+    "price": 999.99,
+    "stock": 15,
+    "image": "",
+    "slug": "reloj-analogico-acero-clasico",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.223Z",
+    "updated_at": "2026-05-18T13:10:11.223Z",
+    "category": [
+      40
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 137,
+  "fields": {
+    "name": "Base Líquida SPF 30 FPS",
+    "description": "Cobertura media-alta, 30 tonos, SPF 30, duración 24h",
+    "price": 249.99,
+    "stock": 50,
+    "image": "",
+    "slug": "base-liquida-spf30-fps",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.230Z",
+    "updated_at": "2026-05-18T13:10:11.230Z",
+    "category": [
+      41
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 138,
+  "fields": {
+    "name": "Paleta Sombras 12 Tonos Nude",
+    "description": "12 tonos matte y shimmer, altamente pigmentada, espejo",
+    "price": 299.99,
+    "stock": 35,
+    "image": "",
+    "slug": "paleta-sombras-12-nude",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.230Z",
+    "updated_at": "2026-05-18T13:10:11.230Z",
+    "category": [
+      41
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 139,
+  "fields": {
+    "name": "Labial Mate de Larga Duración",
+    "description": "Fórmula mate, 8h sin retoques, no transfiere, 24 tonos",
+    "price": 99.99,
+    "stock": 80,
+    "image": "",
+    "slug": "labial-mate-larga-duracion",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.230Z",
+    "updated_at": "2026-05-18T13:10:11.230Z",
+    "category": [
+      41
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 140,
+  "fields": {
+    "name": "Corrector Líquido Iluminador",
+    "description": "Cobertura buildable, hidratante, 20 tonos, finish luminoso",
+    "price": 179.99,
+    "stock": 55,
+    "image": "",
+    "slug": "corrector-liquido-iluminador",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.230Z",
+    "updated_at": "2026-05-18T13:10:11.230Z",
+    "category": [
+      41
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 141,
+  "fields": {
+    "name": "Sérum Vitamina C 20% 30ml",
+    "description": "Vitamina C estabilizada 20%, ácido ferúlico, antioxidante",
+    "price": 299.99,
+    "stock": 40,
+    "image": "",
+    "slug": "serum-vitamina-c-20-30ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.233Z",
+    "updated_at": "2026-05-18T13:10:11.233Z",
+    "category": [
+      42
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 142,
+  "fields": {
+    "name": "Crema Hidratante SPF 50 50ml",
+    "description": "Hidratación 48h, SPF 50, sin parabenos, todos tipos piel",
+    "price": 199.99,
+    "stock": 55,
+    "image": "",
+    "slug": "crema-hidratante-spf50-50ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.233Z",
+    "updated_at": "2026-05-18T13:10:11.233Z",
+    "category": [
+      42
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 143,
+  "fields": {
+    "name": "Limpiador Facial Espuma Gentle",
+    "description": "pH balanceado, libre sulfatos, apto piel sensible, 150ml",
+    "price": 149.99,
+    "stock": 65,
+    "image": "",
+    "slug": "limpiador-facial-espuma-gentle",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.233Z",
+    "updated_at": "2026-05-18T13:10:11.233Z",
+    "category": [
+      42
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 144,
+  "fields": {
+    "name": "Shampoo Anticaída Biotina 400ml",
+    "description": "Biotina + Keratina, fortalece desde la raíz, sin sal",
+    "price": 129.99,
+    "stock": 60,
+    "image": "",
+    "slug": "shampoo-anticaida-biotina-400ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.236Z",
+    "updated_at": "2026-05-18T13:10:11.236Z",
+    "category": [
+      43
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 145,
+  "fields": {
+    "name": "Mascarilla Reparadora Argán 250g",
+    "description": "Aceite de argán marroquí, repara puntas, brillo intenso",
+    "price": 179.99,
+    "stock": 45,
+    "image": "",
+    "slug": "mascarilla-reparadora-argan-250g",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.236Z",
+    "updated_at": "2026-05-18T13:10:11.236Z",
+    "category": [
+      43
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 146,
+  "fields": {
+    "name": "Aceite Argán Puro Cabello 50ml",
+    "description": "100% puro prensado en frío, multipropósito, sin silicona",
+    "price": 199.99,
+    "stock": 35,
+    "image": "",
+    "slug": "aceite-argan-puro-cabello-50ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.236Z",
+    "updated_at": "2026-05-18T13:10:11.236Z",
+    "category": [
+      43
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 147,
+  "fields": {
+    "name": "Perfume Floral Mujer EDP 100ml",
+    "description": "Eau de Parfum, notas floral-frutal, duración 8-10h",
+    "price": 499.99,
+    "stock": 20,
+    "image": "",
+    "slug": "perfume-floral-mujer-edp-100ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.240Z",
+    "updated_at": "2026-05-18T13:10:11.240Z",
+    "category": [
+      44
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 148,
+  "fields": {
+    "name": "Colonia Hombre EDT 100ml",
+    "description": "Eau de Toilette, notas amaderadas-especiadas, duración 6h",
+    "price": 399.99,
+    "stock": 25,
+    "image": "",
+    "slug": "colonia-hombre-edt-100ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.240Z",
+    "updated_at": "2026-05-18T13:10:11.240Z",
+    "category": [
+      44
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 149,
+  "fields": {
+    "name": "Set Regalo Perfume + Body Loción",
+    "description": "EDP 50ml + Body Lotion 200ml, caja regalo premium",
+    "price": 699.99,
+    "stock": 15,
+    "image": "",
+    "slug": "set-regalo-perfume-body-locion",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.240Z",
+    "updated_at": "2026-05-18T13:10:11.240Z",
+    "category": [
+      44
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 150,
+  "fields": {
+    "name": "Mancuernas Ajustables 2-20kg",
+    "description": "Sistema dial ajuste rápido, reemplaza 15 pares, base incluida",
+    "price": 1499.99,
+    "stock": 12,
+    "image": "",
+    "slug": "mancuernas-ajustables-2-20kg",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.246Z",
+    "updated_at": "2026-05-18T13:10:11.246Z",
+    "category": [
+      45
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 151,
+  "fields": {
+    "name": "Colchoneta Yoga Antidesliz 6mm",
+    "description": "6mm espesor, caucho natural, superficie antidesliz, 183x61cm",
+    "price": 299.99,
+    "stock": 50,
+    "image": "",
+    "slug": "colchoneta-yoga-anti-6mm",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.246Z",
+    "updated_at": "2026-05-18T13:10:11.246Z",
+    "category": [
+      45
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 152,
+  "fields": {
+    "name": "Banda Elástica Resistencia x3",
+    "description": "Set 3 niveles resistencia (liviana, media, fuerte), látex natural",
+    "price": 149.99,
+    "stock": 70,
+    "image": "",
+    "slug": "banda-elastica-resist-x3",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.246Z",
+    "updated_at": "2026-05-18T13:10:11.246Z",
+    "category": [
+      45
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 153,
+  "fields": {
+    "name": "Cuerda Saltar Speed PRO",
+    "description": "Cable acero recubierto, mangos aluminum, ajustable, contador",
+    "price": 199.99,
+    "stock": 55,
+    "image": "",
+    "slug": "cuerda-saltar-speed-pro",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.246Z",
+    "updated_at": "2026-05-18T13:10:11.246Z",
+    "category": [
+      45
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 154,
+  "fields": {
+    "name": "Guantes Gym Antidesliz L/XL",
+    "description": "Cuero sintético palma, velcro ajustable, ventilación dorso",
+    "price": 149.99,
+    "stock": 65,
+    "image": "",
+    "slug": "guantes-gym-antidesliz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.246Z",
+    "updated_at": "2026-05-18T13:10:11.246Z",
+    "category": [
+      45
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 155,
+  "fields": {
+    "name": "Balón Fútbol Termosellado No.5",
+    "description": "Termosellado 32 paneles, cuero PU, apto césped/sintético",
+    "price": 299.99,
+    "stock": 40,
+    "image": "",
+    "slug": "balon-futbol-termosellado-no5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.250Z",
+    "updated_at": "2026-05-18T13:10:11.250Z",
+    "category": [
+      46
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 156,
+  "fields": {
+    "name": "Guayos Fútbol Césped Natural",
+    "description": "Upper sintético, suela TPU 13 tacos, tallas 36-45",
+    "price": 499.99,
+    "stock": 30,
+    "image": "",
+    "slug": "guayos-futbol-cesped-natural",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.250Z",
+    "updated_at": "2026-05-18T13:10:11.250Z",
+    "category": [
+      46
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 157,
+  "fields": {
+    "name": "Espinilleras con Tobillera",
+    "description": "EVA alta densidad, tobillera integrada, tallas XS-XL",
+    "price": 149.99,
+    "stock": 60,
+    "image": "",
+    "slug": "espinilleras-con-tobillera",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.250Z",
+    "updated_at": "2026-05-18T13:10:11.250Z",
+    "category": [
+      46
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 158,
+  "fields": {
+    "name": "Arco Portátil Entrenamiento",
+    "description": "Aluminio 180x120cm, red incluida, piquetas fijación, plegable",
+    "price": 799.99,
+    "stock": 15,
+    "image": "",
+    "slug": "arco-portatil-entrenamiento",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.250Z",
+    "updated_at": "2026-05-18T13:10:11.250Z",
+    "category": [
+      46
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 159,
+  "fields": {
+    "name": "Casco Ciclismo MTB Adulto",
+    "description": "Certificado CE EN1078, ventilación 18 canales, talla M-L",
+    "price": 399.99,
+    "stock": 25,
+    "image": "",
+    "slug": "casco-ciclismo-mtb-adulto",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.253Z",
+    "updated_at": "2026-05-18T13:10:11.253Z",
+    "category": [
+      47
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 160,
+  "fields": {
+    "name": "Guantes Ciclismo Acolchados",
+    "description": "Gel palma, dedos cortos, velcro, protección impacto",
+    "price": 149.99,
+    "stock": 45,
+    "image": "",
+    "slug": "guantes-ciclismo-acolchados",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.253Z",
+    "updated_at": "2026-05-18T13:10:11.253Z",
+    "category": [
+      47
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 161,
+  "fields": {
+    "name": "Silla Ciclismo Gel Acolchada",
+    "description": "Gel dual densidad, rieles acero, 27.2mm, 280g",
+    "price": 299.99,
+    "stock": 30,
+    "image": "",
+    "slug": "silla-ciclismo-gel-acolchada",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.253Z",
+    "updated_at": "2026-05-18T13:10:11.253Z",
+    "category": [
+      47
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 162,
+  "fields": {
+    "name": "Carpa Camping 4 Personas Domo",
+    "description": "Impermeable 2000mm, montaje 5min, doble capa, bolsa",
+    "price": 1499.99,
+    "stock": 12,
+    "image": "",
+    "slug": "carpa-camping-4-personas-domo",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.260Z",
+    "updated_at": "2026-05-18T13:10:11.260Z",
+    "category": [
+      48
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 163,
+  "fields": {
+    "name": "Sleeping Bag -5°C Momia",
+    "description": "Relleno 200g fibra hueca, temperatura confort -5°C, 1.2kg",
+    "price": 599.99,
+    "stock": 20,
+    "image": "",
+    "slug": "sleeping-bag-minus5-momia",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.260Z",
+    "updated_at": "2026-05-18T13:10:11.260Z",
+    "category": [
+      48
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 164,
+  "fields": {
+    "name": "Mochila Trekking 45L Impermeable",
+    "description": "Armazón aluminio, cinturón lumbar, cubierta lluvia, 45L",
+    "price": 899.99,
+    "stock": 15,
+    "image": "",
+    "slug": "mochila-trekking-45l-imp",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.260Z",
+    "updated_at": "2026-05-18T13:10:11.260Z",
+    "category": [
+      48
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 165,
+  "fields": {
+    "name": "Gimnasio Actividades Bebé 0-12m",
+    "description": "5 juguetes colgantes, alfombra suave, arcos desmontables",
+    "price": 699.99,
+    "stock": 18,
+    "image": "",
+    "slug": "gimnasio-actividades-bebe-012m",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.263Z",
+    "updated_at": "2026-05-18T13:10:11.263Z",
+    "category": [
+      49
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 166,
+  "fields": {
+    "name": "Sonajeros Set x4 Piezas",
+    "description": "BPA free, colores vivos, texturas variadas, lavable",
+    "price": 149.99,
+    "stock": 55,
+    "image": "",
+    "slug": "sonajeros-set-x4-piezas",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.263Z",
+    "updated_at": "2026-05-18T13:10:11.263Z",
+    "category": [
+      49
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 167,
+  "fields": {
+    "name": "Andadera Musical con Luces",
+    "description": "Bandeja extraíble, 6 actividades, melodías, 6-18 meses",
+    "price": 499.99,
+    "stock": 20,
+    "image": "",
+    "slug": "andadera-musical-con-luces",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.263Z",
+    "updated_at": "2026-05-18T13:10:11.263Z",
+    "category": [
+      49
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 168,
+  "fields": {
+    "name": "Monopolio Clásico Español",
+    "description": "Edición clásica en español, 2-6 jugadores, +8 años",
+    "price": 349.99,
+    "stock": 25,
+    "image": "",
+    "slug": "monopolio-clasico-espanol",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.266Z",
+    "updated_at": "2026-05-18T13:10:11.266Z",
+    "category": [
+      50
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 169,
+  "fields": {
+    "name": "Scrabble Deluxe Español",
+    "description": "Tablero giratorio, fichas premium, 2-4 jugadores",
+    "price": 299.99,
+    "stock": 20,
+    "image": "",
+    "slug": "scrabble-deluxe-espanol",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.266Z",
+    "updated_at": "2026-05-18T13:10:11.266Z",
+    "category": [
+      50
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 170,
+  "fields": {
+    "name": "Rompecabezas 1000 Piezas Paisaje",
+    "description": "1000 piezas premium, 70x50cm terminado, marco incluido",
+    "price": 199.99,
+    "stock": 35,
+    "image": "",
+    "slug": "rompecabezas-1000-piezas-paisaje",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.266Z",
+    "updated_at": "2026-05-18T13:10:11.266Z",
+    "category": [
+      50
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 171,
+  "fields": {
+    "name": "Figura Acción Articulada 30cm",
+    "description": "12 puntos articulación, accesorios incluidos, 30cm",
+    "price": 199.99,
+    "stock": 30,
+    "image": "",
+    "slug": "figura-accion-articulada-30cm",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.270Z",
+    "updated_at": "2026-05-18T13:10:11.270Z",
+    "category": [
+      51
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 172,
+  "fields": {
+    "name": "Set Dinosaurios Realistas x8",
+    "description": "8 figuras pintadas a mano, escala 1:30, caucho suave",
+    "price": 299.99,
+    "stock": 25,
+    "image": "",
+    "slug": "set-dinosaurios-realistas-x8",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.270Z",
+    "updated_at": "2026-05-18T13:10:11.270Z",
+    "category": [
+      51
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 173,
+  "fields": {
+    "name": "Colección Vehículos Metal x5",
+    "description": "Miniaturas fundición metal 1:64, diferentes modelos",
+    "price": 249.99,
+    "stock": 40,
+    "image": "",
+    "slug": "coleccion-vehiculos-metal-x5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.270Z",
+    "updated_at": "2026-05-18T13:10:11.270Z",
+    "category": [
+      51
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 174,
+  "fields": {
+    "name": "Kit Construcción Bloques 200pz",
+    "description": "200 bloques compatibles, colores vivos, bolsa almacenaje",
+    "price": 449.99,
+    "stock": 30,
+    "image": "",
+    "slug": "kit-construccion-bloques-200pz",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.273Z",
+    "updated_at": "2026-05-18T13:10:11.273Z",
+    "category": [
+      52
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 175,
+  "fields": {
+    "name": "Ábaco Madera Colores 10 Filas",
+    "description": "Madera maciza, 100 cuentas, base antideslizante, +2 años",
+    "price": 149.99,
+    "stock": 40,
+    "image": "",
+    "slug": "abaco-madera-colores-10filas",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.273Z",
+    "updated_at": "2026-05-18T13:10:11.273Z",
+    "category": [
+      52
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 176,
+  "fields": {
+    "name": "Telescopio Infantil 40x Trípode",
+    "description": "40x ampliación, lente 70mm, trípode ajustable, manual",
+    "price": 499.99,
+    "stock": 15,
+    "image": "",
+    "slug": "telescopio-infantil-40x-tripode",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.273Z",
+    "updated_at": "2026-05-18T13:10:11.273Z",
+    "category": [
+      52
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 177,
+  "fields": {
+    "name": "Set Tapetes Goma Universal x4",
+    "description": "Goma antideslizante, borde elevado, fácil limpieza, x4",
+    "price": 299.99,
+    "stock": 35,
+    "image": "",
+    "slug": "tapetes-goma-universal-x4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.276Z",
+    "updated_at": "2026-05-18T13:10:11.276Z",
+    "category": [
+      53
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 178,
+  "fields": {
+    "name": "Soporte Celular Ventilación Mag",
+    "description": "Compatible MagSafe, rotación 360°, instalación sin tornillos",
+    "price": 99.99,
+    "stock": 80,
+    "image": "",
+    "slug": "soporte-celular-ventilacion-mag",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.276Z",
+    "updated_at": "2026-05-18T13:10:11.276Z",
+    "category": [
+      53
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 179,
+  "fields": {
+    "name": "Cámara de Reversa HD 170°",
+    "description": "1080p, visión nocturna, ángulo 170°, resistente agua IP68",
+    "price": 399.99,
+    "stock": 20,
+    "image": "",
+    "slug": "camara-reversa-hd-170",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.276Z",
+    "updated_at": "2026-05-18T13:10:11.276Z",
+    "category": [
+      53
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 180,
+  "fields": {
+    "name": "Ambientador Auto Premium Pack x3",
+    "description": "3 fragancias (vainilla, cuero, cítrico), duración 60 días",
+    "price": 79.99,
+    "stock": 100,
+    "image": "",
+    "slug": "ambientador-auto-premium-x3",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.276Z",
+    "updated_at": "2026-05-18T13:10:11.276Z",
+    "category": [
+      53
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 181,
+  "fields": {
+    "name": "Kit Herramientas 40 Piezas Maletín",
+    "description": "Maletín aluminio, acero CrV, destornilladores+llaves+alicates",
+    "price": 699.99,
+    "stock": 18,
+    "image": "",
+    "slug": "kit-herramientas-40pz-maletin",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.283Z",
+    "updated_at": "2026-05-18T13:10:11.283Z",
+    "category": [
+      54
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 182,
+  "fields": {
+    "name": "Inflador Digital Auto 150PSI",
+    "description": "150PSI, pantalla LCD, apagado automático, 12V mechero",
+    "price": 299.99,
+    "stock": 25,
+    "image": "",
+    "slug": "inflador-digital-auto-150psi",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.283Z",
+    "updated_at": "2026-05-18T13:10:11.283Z",
+    "category": [
+      54
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 183,
+  "fields": {
+    "name": "Gato Hidráulico Botella 2 Ton",
+    "description": "2 toneladas capacidad, altura mín 18cm máx 35cm, acero",
+    "price": 899.99,
+    "stock": 12,
+    "image": "",
+    "slug": "gato-hidraulico-botella-2ton",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.283Z",
+    "updated_at": "2026-05-18T13:10:11.283Z",
+    "category": [
+      54
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 184,
+  "fields": {
+    "name": "Aceite Motor Sintético 5W-30 4L",
+    "description": "100% sintético API SN, compatible gasolina/diesel, 4L",
+    "price": 299.99,
+    "stock": 30,
+    "image": "",
+    "slug": "aceite-motor-sint-5w30-4l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.286Z",
+    "updated_at": "2026-05-18T13:10:11.286Z",
+    "category": [
+      55
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 185,
+  "fields": {
+    "name": "Refrigerante Motor Concentrado 1L",
+    "description": "Concentrado 1:2, protección -35°C a +120°C, 1L",
+    "price": 119.99,
+    "stock": 40,
+    "image": "",
+    "slug": "refrigerante-motor-conc-1l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.286Z",
+    "updated_at": "2026-05-18T13:10:11.286Z",
+    "category": [
+      55
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 186,
+  "fields": {
+    "name": "Batería Auto 60Ah 540A MF",
+    "description": "Libre mantenimiento, 60Ah, 540A arranque, polaridad estándar",
+    "price": 1299.99,
+    "stock": 10,
+    "image": "",
+    "slug": "bateria-auto-60ah-540a-mf",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.290Z",
+    "updated_at": "2026-05-18T13:10:11.290Z",
+    "category": [
+      56
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 187,
+  "fields": {
+    "name": "Filtro de Aceite Universal",
+    "description": "Acero galvanizado, compatible 90% vehículos, 3/4-16 UNF",
+    "price": 79.99,
+    "stock": 60,
+    "image": "",
+    "slug": "filtro-aceite-universal",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.290Z",
+    "updated_at": "2026-05-18T13:10:11.290Z",
+    "category": [
+      56
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 188,
+  "fields": {
+    "name": "Arroz Extra Largo 5kg Premium",
+    "description": "Grano largo premium, sin gluten, bolsa resellable",
+    "price": 89.99,
+    "stock": 80,
+    "image": "",
+    "slug": "arroz-extra-largo-5kg-premium",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.293Z",
+    "updated_at": "2026-05-18T13:10:11.293Z",
+    "category": [
+      57
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 189,
+  "fields": {
+    "name": "Aceite de Girasol Extra 1L",
+    "description": "Alto oleico, prensado en frío, libre colesterol",
+    "price": 49.99,
+    "stock": 120,
+    "image": "",
+    "slug": "aceite-girasol-extra-1l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.293Z",
+    "updated_at": "2026-05-18T13:10:11.293Z",
+    "category": [
+      57
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 190,
+  "fields": {
+    "name": "Espagueti 500g Pack x5 Bronce",
+    "description": "Elaborado con trigo duro, textura rugosa, pack ahorro x5",
+    "price": 69.99,
+    "stock": 100,
+    "image": "",
+    "slug": "espagueti-500g-bronce-x5",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.293Z",
+    "updated_at": "2026-05-18T13:10:11.293Z",
+    "category": [
+      57
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 191,
+  "fields": {
+    "name": "Agua Mineral Natural 500ml x12",
+    "description": "Manantial natural, sin gas, pack 12 botellas x500ml",
+    "price": 79.99,
+    "stock": 100,
+    "image": "",
+    "slug": "agua-mineral-500ml-x12",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.300Z",
+    "updated_at": "2026-05-18T13:10:11.300Z",
+    "category": [
+      58
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 192,
+  "fields": {
+    "name": "Jugo Natural Naranja 100% 1L",
+    "description": "Sin azúcar añadida, sin conservantes, 100% naranja",
+    "price": 49.99,
+    "stock": 80,
+    "image": "",
+    "slug": "jugo-natural-naranja-100-1l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.300Z",
+    "updated_at": "2026-05-18T13:10:11.300Z",
+    "category": [
+      58
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 193,
+  "fields": {
+    "name": "Café Molido Arábica 500g",
+    "description": "Arábica 100%, tostado medio, molienda fina para espresso",
+    "price": 129.99,
+    "stock": 60,
+    "image": "",
+    "slug": "cafe-molido-arabica-500g",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.300Z",
+    "updated_at": "2026-05-18T13:10:11.300Z",
+    "category": [
+      58
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 194,
+  "fields": {
+    "name": "Papas Fritas Sabor Natural 150g",
+    "description": "Rebanadas finas, sal marina, sin glutamato, bolsa 150g",
+    "price": 29.99,
+    "stock": 150,
+    "image": "",
+    "slug": "papas-fritas-natural-150g",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.303Z",
+    "updated_at": "2026-05-18T13:10:11.303Z",
+    "category": [
+      59
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 195,
+  "fields": {
+    "name": "Galletas Chocolate Pack x6 200g",
+    "description": "Doble choco chip, pack 6 bolsas, sin colorantes artificiales",
+    "price": 59.99,
+    "stock": 120,
+    "image": "",
+    "slug": "galletas-chocolate-x6-200g",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.303Z",
+    "updated_at": "2026-05-18T13:10:11.303Z",
+    "category": [
+      59
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 196,
+  "fields": {
+    "name": "Leche Entera UHT 1L Pack x6",
+    "description": "Entera 3.5% grasa, UHT larga vida, sin lactosa disponible",
+    "price": 89.99,
+    "stock": 80,
+    "image": "",
+    "slug": "leche-entera-uht-1l-x6",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.306Z",
+    "updated_at": "2026-05-18T13:10:11.306Z",
+    "category": [
+      60
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 197,
+  "fields": {
+    "name": "Yogur Natural sin Azúcar x4",
+    "description": "Bifidus activo, sin azúcar añadida, pack 4x125g",
+    "price": 49.99,
+    "stock": 70,
+    "image": "",
+    "slug": "yogur-natural-sin-azucar-x4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.306Z",
+    "updated_at": "2026-05-18T13:10:11.306Z",
+    "category": [
+      60
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 198,
+  "fields": {
+    "name": "Croquetas Perro Adulto Pollo 15kg",
+    "description": "Pollo como 1er ingrediente, omega 3+6, sin colorantes",
+    "price": 599.99,
+    "stock": 20,
+    "image": "",
+    "slug": "croquetas-perro-adulto-pollo-15k",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.310Z",
+    "updated_at": "2026-05-18T13:10:11.310Z",
+    "category": [
+      61
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 199,
+  "fields": {
+    "name": "Comida Húmeda Perro Res 400g x6",
+    "description": "Res y vegetales en gelatina, 85% carne, sin soja x6",
+    "price": 299.99,
+    "stock": 30,
+    "image": "",
+    "slug": "comida-humeda-perro-res-400g-x6",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.310Z",
+    "updated_at": "2026-05-18T13:10:11.310Z",
+    "category": [
+      61
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 200,
+  "fields": {
+    "name": "Croquetas Gato Adulto Atún 8kg",
+    "description": "Atún y salmón, taurina, hairball control, bolsa 8kg",
+    "price": 399.99,
+    "stock": 18,
+    "image": "",
+    "slug": "croquetas-gato-adulto-atun-8kg",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.313Z",
+    "updated_at": "2026-05-18T13:10:11.313Z",
+    "category": [
+      62
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 201,
+  "fields": {
+    "name": "Pouch Atún y Pollo Gato x4",
+    "description": "Gelatina natural, sin cereales, alto en proteína, x4 85g",
+    "price": 79.99,
+    "stock": 55,
+    "image": "",
+    "slug": "pouch-atun-pollo-gato-x4",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.313Z",
+    "updated_at": "2026-05-18T13:10:11.313Z",
+    "category": [
+      62
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 202,
+  "fields": {
+    "name": "Shampoo Antipulgas Perro 500ml",
+    "description": "Clorexidina 2%, elimina pulgas/garrapatas, pH neutro",
+    "price": 149.99,
+    "stock": 40,
+    "image": "",
+    "slug": "shampoo-antipulgas-perro-500ml",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.316Z",
+    "updated_at": "2026-05-18T13:10:11.316Z",
+    "category": [
+      63
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 203,
+  "fields": {
+    "name": "Arena Sanitaria Gato Aglomerante 10kg",
+    "description": "Ultra aglomerante, control olor 30 días, sin polvo",
+    "price": 179.99,
+    "stock": 30,
+    "image": "",
+    "slug": "arena-sanitaria-gato-aglom-10kg",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.316Z",
+    "updated_at": "2026-05-18T13:10:11.316Z",
+    "category": [
+      63
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 204,
+  "fields": {
+    "name": "Collar Ajustable con Placa ID",
+    "description": "Nylon reforzado, placa acero grabable, ajuste S-M-L",
+    "price": 99.99,
+    "stock": 60,
+    "image": "",
+    "slug": "collar-ajustable-placa-id",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.320Z",
+    "updated_at": "2026-05-18T13:10:11.320Z",
+    "category": [
+      64
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 205,
+  "fields": {
+    "name": "Cama Ortopédica Mascotas L",
+    "description": "Espuma ortopédica 10cm, funda polar lavable, talla L 90x70cm",
+    "price": 499.99,
+    "stock": 15,
+    "image": "",
+    "slug": "cama-ortopedica-mascotas-l",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.320Z",
+    "updated_at": "2026-05-18T13:10:11.320Z",
+    "category": [
+      64
+    ]
+  }
+},
+{
+  "model": "inventario.product",
+  "pk": 206,
+  "fields": {
+    "name": "Juguete Kong Relleno Perros M",
+    "description": "Caucho natural resistente, rellenable con snacks, talla M",
+    "price": 129.99,
+    "stock": 45,
+    "image": "",
+    "slug": "juguete-kong-relleno-perros-m",
+    "active": true,
+    "created_at": "2026-05-18T13:10:11.320Z",
+    "updated_at": "2026-05-18T13:10:11.320Z",
+    "category": [
+      64
+    ]
+  }
+}
+]

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load inventario_tags %}
 {% block title %}Inventario{% endblock %}
 {% block body %}
 <div class="min-h-screen bg-gray-50 py-10 sm:px-6 lg:px-8">
@@ -7,15 +8,15 @@
     <div class="bg-white border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Inventario de Productos</h1>
-            <p class="mt-1 text-sm text-gray-500">{{ products|length }} producto{{ products|length|pluralize }} disponible{{ products|length|pluralize }}</p>
+            <p class="mt-1 text-sm text-gray-500">{{ page_obj.paginator.count }} producto{{ page_obj.paginator.count|pluralize }} disponible{{ page_obj.paginator.count|pluralize }}</p>
         </div>
     </div>
 
     <!-- Product Grid -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {% if products %}
+    <div id="products-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {% if page_obj %}
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {% for product in products %}
+            {% for product in page_obj %}
             <a href="{{ product.get_absolute_url }}" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
 
                 <!-- Image -->
@@ -53,6 +54,36 @@
             </a>
             {% endfor %}
         </div>
+
+        <!-- Controles de paginación -->
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div class="mt-10 flex justify-center">
+            <nav class="inline-flex items-center rounded-lg shadow-sm overflow-hidden border border-gray-200">
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-white text-gray-700 hover:bg-gray-50 border-r border-gray-200 text-sm font-medium">← Anterior</a>
+                {% else %}
+                <span class="px-4 py-2 bg-gray-100 text-gray-400 border-r border-gray-200 text-sm font-medium cursor-not-allowed">← Anterior</span>
+                {% endif %}
+                <!-- Números de página -->
+                {% page_range page_obj as pages %}
+                {% for num in pages %}
+                    {% if num is None %}
+                    <span class="px-4 py-2 bg-white text-gray-400 border-r border-gray-200 text-sm font-medium select-none">…</span>
+                    {% elif page_obj.number == num %}
+                    <span class="px-4 py-2 bg-indigo-600 text-white border-r border-gray-200 text-sm font-medium">{{ num }}</span>
+                    {% else %}
+                    <a href="?page={{ num }}" class="px-4 py-2 bg-white text-gray-700 hover:bg-gray-50 border-r border-gray-200 text-sm font-medium">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-white text-gray-700 hover:bg-gray-50 border-l border-gray-200 text-sm font-medium">Siguiente →</a>
+                {% else %}
+                <span class="px-4 py-2 bg-gray-100 text-gray-400 border-l border-gray-200 text-sm font-medium cursor-not-allowed">Siguiente →</span>
+                {% endif %}
+            </nav>
+        </div>
+        {% endif %}
         {% else %}
         <div class="flex flex-col items-center justify-center py-24 text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,4 +96,26 @@
     </div>
 
 </div>
+
+<script>
+$(document).on('click', '#products-container a[href*="page="]', function (e) {
+    e.preventDefault();
+    const url = $(this).attr('href');
+    loadPage(url);
+});
+
+window.addEventListener('popstate', function () {
+    loadPage(window.location.href);
+});
+
+function loadPage(url) {
+    $('#products-container').css({ opacity: '0.4', transition: 'opacity 0.2s' });
+    $.get(url, function (data) {
+        const newContent = $(data).find('#products-container').html();
+        $('#products-container').html(newContent).css({ opacity: '1' });
+        window.history.pushState({}, '', url);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+</script>
 {% endblock %}
