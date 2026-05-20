@@ -14,7 +14,7 @@
                 </li>
                 <li><span class="text-gray-300">/</span></li>
                 <li>
-                    <a href="{% url 'home' %}" class="hover:text-indigo-600 transition-colors">Inventario</a>
+                    <a href="{% url 'category_products' object.category.first.id %}" class="hover:text-indigo-600 transition-colors">{{ object.category.first.name }}</a>
                 </li>
                 <li><span class="text-gray-300">/</span></li>
                 <li class="text-gray-900 font-medium truncate max-w-xs">{{ object.name }}</li>

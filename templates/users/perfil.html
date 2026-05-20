@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Perfil de Usuario{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Mi Perfil</h1>
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <div class="flex items-center space-x-6 mb-6">
+            <img src="{% static 'assets/Image-not-found.png' %}" alt="Foto de perfil" class="w-24 h-24 rounded-full object-cover">
+            <div>
+                <h2 class="text-xl font-semibold">{{ user.username }}</h2>
+                {% if user.first_name and user.last_name %}
+                <p >{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                <p class="text-gray-600">Nombre no proporcionado</p>
+                {% endif %}
+                <p class="text-gray-600">{{ user.email }}</p>
+            </div>
+        </div>
+
+        <!-- Aquí puedes agregar más información del perfil, como pedidos, direcciones, etc. -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4">Información adicional</h3>
+            <p>Aquí puedes mostrar más detalles del usuario o permitir que editen su perfil.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

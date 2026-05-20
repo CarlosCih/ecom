@@ -5,6 +5,7 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='categories/', null=True, blank=True)
     parents = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,

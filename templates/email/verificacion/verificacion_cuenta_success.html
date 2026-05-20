@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Verificación de Cuenta Exitosa{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-md p-8 space-y-6 text-center">
+
+        <!-- Icono de éxito -->
+        <div class="flex justify-center">
+            <div class="bg-green-100 rounded-full p-4">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Título -->
+        <div>
+            <h2 class="text-2xl font-extrabold text-gray-900">¡Cuenta verificada!</h2>
+            <p class="mt-2 text-sm text-gray-500">Tu dirección de correo ha sido confirmada</p>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="bg-green-50 border border-green-100 rounded-xl px-5 py-4 text-sm text-green-700 text-left">
+            <p>¡Felicidades! Tu cuenta ha sido verificada exitosamente. Ahora puedes iniciar sesión y disfrutar de todos los beneficios de nuestra plataforma.</p>
+        </div>
+
+        <!-- Botón -->
+        <a href="{% url 'login' %}"
+           class="block w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg shadow-sm transition text-center">
+            Iniciar sesión
+        </a>
+
+    </div>
+</div>
+{% endblock %}

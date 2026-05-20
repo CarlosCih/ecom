@@ -154,13 +154,17 @@ LOGOUT_REDIRECT_URL = 'login'
 REGISTER_REDIRECT_URL = 'login'
 
 # Email configuration
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-#EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'cihcarlos258@gmail.com'
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Paginación
 PAGINATION_PAGE_SIZE = 40
+
+# Configuración para el sistema de stripe
+#STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+#STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 

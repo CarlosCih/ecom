@@ -9,4 +9,10 @@ urlpatterns = [
     
     # User profile
     path('profile/', views.ProfileView.as_view(), name='profile'),
+    
+    # Email verification
+    path('email-verification/<str:uidb64>/<str:token>/', views.email_verification, name='email_verification'),
+    path('email-verification/success/', views.email_verification_success, name='email_verification_success'),
+    path('email-verification/failed/', views.email_verification_failed, name='email_verification_failed'),
+    path('email-verification/sent/', views.email_verification_sent, name='email_verification_sent'),
 ]

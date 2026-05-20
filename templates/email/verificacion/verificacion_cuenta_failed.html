@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Verificación de Cuenta Fallida{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-md p-8 space-y-6 text-center">
+
+        <!-- Icono de error -->
+        <div class="flex justify-center">
+            <div class="bg-red-100 rounded-full p-4">
+                <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Título -->
+        <div>
+            <h2 class="text-2xl font-extrabold text-gray-900">Verificación fallida</h2>
+            <p class="mt-2 text-sm text-gray-500">No pudimos verificar tu cuenta</p>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="bg-red-50 border border-red-100 rounded-xl px-5 py-4 text-sm text-red-700 text-left space-y-2">
+            <p>Lo sentimos, el enlace de verificación es inválido o ha expirado.</p>
+            <p>Por favor, intenta registrarte nuevamente o contacta al soporte si el problema persiste.</p>
+        </div>
+
+        <!-- Contacto soporte -->
+        <p class="text-xs text-gray-400">
+            ¿Necesitas ayuda? Escríbenos a
+            <a href="mailto:soporte@example.com" class="text-indigo-600 hover:text-indigo-500 font-medium">soporte@example.com</a>
+        </p>
+
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row gap-3">
+            <a href="{% url 'register' %}"
+               class="flex-1 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg shadow-sm transition text-center">
+                Registrarse nuevamente
+            </a>
+            <a href="{% url 'login' %}"
+               class="flex-1 py-2.5 px-4 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-lg shadow-sm border border-gray-300 transition text-center">
+                Ir al login
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Verificación de Cuenta Enviada{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-md p-8 space-y-6 text-center">
+
+        <!-- Icono -->
+        <div class="flex justify-center">
+            <div class="bg-indigo-100 rounded-full p-4">
+                <svg class="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0-9.75 6.75L2.25 6.75" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Título -->
+        <div>
+            <h2 class="text-2xl font-extrabold text-gray-900">Revisa tu correo</h2>
+            <p class="mt-2 text-sm text-gray-500">Verificación de cuenta enviada</p>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-xl px-5 py-4 text-sm text-indigo-700 text-left space-y-2">
+            <p>Hemos enviado un correo de verificación a tu dirección de email.</p>
+            <p>Por favor, revisa tu bandeja de entrada y haz clic en el enlace para activar tu cuenta.</p>
+        </div>
+
+        <!-- Nota spam -->
+        <p class="text-xs text-gray-400">
+            ¿No recibiste el correo? Revisa tu carpeta de <span class="font-medium">spam</span> o intenta registrarte nuevamente.
+        </p>
+
+        <!-- Botón -->
+        <a href="{% url 'login' %}"
+           class="block w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg shadow-sm transition text-center">
+            Ir al inicio de sesión
+        </a>
+
+    </div>
+</div>
+{% endblock %}
