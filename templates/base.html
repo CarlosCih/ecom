@@ -85,7 +85,11 @@
                                 <button class="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                                     <span class="absolute -inset-1.5"></span>
                                     <span class="sr-only">Open user menu</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20a6 6 0 0 0-12 0"></path><circle cx="12" cy="10" r="4"></circle><circle cx="12" cy="12" r="10"></circle></svg>
+                                    {% if user.profile.profile_picture %}
+                                        <img src="{{ user.profile.profile_picture.url }}" alt="Foto de perfil" class="h-8 w-8 rounded-full object-cover">
+                                    {% else %}
+                                        <img src="{% static 'images/default_profile.png' %}" alt="Foto de perfil" class="h-8 w-8 rounded-full object-cover">
+                                    {% endif %}
                                 </button>
                             {% else %}
                             <a href="{% url 'login' %}" class="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">

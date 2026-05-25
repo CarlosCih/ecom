@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -8,6 +9,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMultiAlternatives
 from users import forms
 from users.forms import CreateUserForm, LoginForm
+from .models import Profile
 from .token import account_activation_token
 
 
@@ -98,9 +100,12 @@ def logout_view(request):
     # Redirigir al usuario a la página de inicio de sesión después de cerrar sesión
     return redirect('login')
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
+    login_url = 'login'
+
     def get(self, request):
-        return render(request, 'users/perfil.html')
+        profile, _ = Profile.objects.get_or_create(user=request.user)
+        return render(request, 'users/perfil.html', {'profile': profile})
     def post(self, request):
         # Aquí se podrían manejar las actualizaciones del perfil del usuario
         return render(request, 'users/perfil.html')

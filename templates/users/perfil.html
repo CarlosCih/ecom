@@ -3,27 +3,101 @@
 {% block title %}Perfil de Usuario{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">Mi Perfil</h1>
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <div class="flex items-center space-x-6 mb-6">
-            <img src="{% static 'assets/Image-not-found.png' %}" alt="Foto de perfil" class="w-24 h-24 rounded-full object-cover">
-            <div>
-                <h2 class="text-xl font-semibold">{{ user.username }}</h2>
-                {% if user.first_name and user.last_name %}
-                <p >{{ user.first_name }} {{ user.last_name }}</p>
-                {% else %}
-                <p class="text-gray-600">Nombre no proporcionado</p>
-                {% endif %}
-                <p class="text-gray-600">{{ user.email }}</p>
-            </div>
-        </div>
+<section class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-6 overflow-hidden rounded-2xl bg-gradient-to-r from-sky-600 via-cyan-600 to-emerald-600 p-6 text-white shadow-lg">
+        <p class="text-xs uppercase tracking-[0.2em] text-cyan-100">Cuenta</p>
+        <h1 class="mt-2 text-3xl font-bold sm:text-4xl">Mi Perfil</h1>
+        <p class="mt-2 text-sm text-cyan-100">Administra tus datos personales y mantén tu información actualizada.</p>
+    </div>
 
-        <!-- Aquí puedes agregar más información del perfil, como pedidos, direcciones, etc. -->
-        <div>
-            <h3 class="text-lg font-semibold mb-4">Información adicional</h3>
-            <p>Aquí puedes mostrar más detalles del usuario o permitir que editen su perfil.</p>
+    <div class="grid gap-6 lg:grid-cols-3">
+        <aside class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 lg:col-span-1">
+            <div class="flex flex-col items-center text-center">
+                {% if profile.profile_picture %}
+                    <div class="h-28 w-28 overflow-hidden rounded-full ring-4 ring-cyan-100">
+                        <img src="{{ profile.profile_picture.url }}" alt="Foto de perfil" class="h-full w-full object-cover">
+                    </div>
+                {% else %}
+                    <div class="flex h-28 w-28 items-center justify-center rounded-full bg-cyan-50 ring-4 ring-cyan-100">
+                        <img src="{% static 'images/default_profile.png' %}" alt="Foto de perfil" class="h-24 w-24 rounded-full object-cover">
+                    </div>
+                {% endif %}
+
+                <h2 class="mt-4 text-xl font-semibold text-gray-900">{{ user.username }}</h2>
+                {% if user.first_name or user.last_name %}
+                    <p class="mt-1 text-sm text-gray-600">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                    <p class="mt-1 text-sm text-gray-500">Nombre no proporcionado</p>
+                {% endif %}
+
+                <div class="mt-5 w-full rounded-xl bg-gray-50 p-4 text-left">
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Correo</p>
+                    <p class="mt-1 break-all text-sm font-medium text-gray-800">{{ user.email|default:"No registrado" }}</p>
+                </div>
+            </div>
+        </aside>
+
+        <div class="space-y-6 lg:col-span-2">
+            <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900">Informacion personal</h3>
+                    <a href="#" class="mt-2 inline-flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-500">
+                        <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4L18.5 2.5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Telefono</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.telefono|default:"No registrado" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Fecha de nacimiento</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.fecha_nacimiento|date:"d/m/Y"|default:"No registrada" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">CURP</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.curp|default:"No registrada" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">RFC</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.rfc|default:"No registrado" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900">Direccion</h3>
+                    <a href="#" class="mt-2 inline-flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-500">
+                        <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4L18.5 2.5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Pais</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.pais|default:"No registrado" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Estado</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.estado|default:"No registrado" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Ciudad</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.ciudad|default:"No registrada" }}</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 p-4">
+                        <p class="text-xs uppercase tracking-wide text-gray-500">Calle</p>
+                        <p class="mt-1 text-sm font-medium text-gray-800">{{ profile.calle|default:"No registrada" }}</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

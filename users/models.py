@@ -10,6 +10,7 @@ class Profile(models.Model):
     curp = models.CharField(max_length=20, blank=True, null=True)
     #identificador fiscal
     rfc = models.CharField(max_length=13, blank=True, null=True)
+    # plantear la eliminacion por datos repetidos, se puede eliminar
     pais = models.CharField(max_length=255, blank=True, null=True)
     estado = models.CharField(max_length=255, blank=True, null=True)
     ciudad = models.CharField(max_length=255, blank=True, null=True)
@@ -39,3 +40,18 @@ class PaymentMethod(models.Model):
 
     def __str__(self):
         return f"{self.card_brand} ...{self.last4} ({self.user.username})"
+    
+
+class Address(models.Model):
+    #modelo para almacenar direcciones de envío, pueden ser múltiples por usuario
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    pais = models.CharField(max_length=255)
+    estado = models.CharField(max_length=255)
+    ciudad = models.CharField(max_length=255)
+    calle = models.CharField(max_length=255)
+    codigo_postal = models.CharField(max_length=10)
+    numero_exterior = models.CharField(max_length=10, blank=True, null=True)
+    numero_interior = models.CharField(max_length=10, blank=True, null=True)
+    referencias = models.TextField(blank=True, null=True)
+    telefono = models.ForeignKey('Profile', on_delete=models.SET_NULL, blank=True, null=True)
+    is_default = models.BooleanField(default=False)
