@@ -1,0 +1,12 @@
+<div class="mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600 p-8 text-white shadow-lg">
+    <div class="flex items-center gap-5">
+        <!-- Info -->
+        <div>
+            <p class="text-xs uppercase tracking-widest text-gray-300">Mi cuenta</p>
+            <h1 class="mt-1 text-2xl font-bold sm:text-3xl leading-tight">
+                Bienvenido, {{ user.get_full_name|default:user.username }}
+            </h1>
+            <p class="mt-1 text-sm text-gray-300">{{ user.email }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿{% load static %}
+
+<aside class="w-full md:w-1/3 lg:w-1/4 md:self-start md:sticky md:top-20">
+    <div class="bg-white rounded-2xl shadow-sm p-4">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Configuración</h2>
+        <ul class="space-y-1">
+            <li>
+                <a href="{% url 'edit_profile' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.path == '/users/profile/informacion_personal/' %}bg-indigo-50 text-indigo-700{% endif %}">
+                    Información personal
+                </a>
+            </li>
+            <li>
+                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Cambiar contraseña
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'address_list' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Direcciones de envío
+                </a>
+            </li>
+            <li>
+                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Métodos de pago
+                </a>
+            </li>
+            <li>
+                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Historial de pedidos
+                </a>
+            </li>
+            <li>
+                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Notificaciones
+                </a>
+            </li>
+            <li>
+                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                    Privacidad y seguridad
+                </a>
+            </li>
+            <li class="pt-2 border-t border-gray-100">
+                <a href="{% url 'logout' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 hover:text-red-700 transition">
+                    Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>

@@ -4,6 +4,9 @@ from django.core.paginator import Paginator
 from django.views.generic import DetailView, ListView
 from django.db.models import Count
 from .models import Category, Product
+import logging
+
+logger = logging.getLogger('inventario')
 
 # Create your views here.
 def home(request):
@@ -43,11 +46,14 @@ class SubcategoryListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        parent = Category.objects.get(pk=self.kwargs['pk'])
+        try:
+            parent = Category.objects.get(pk=self.kwargs['pk'])
+        except Category.DoesNotExist:
+            logger.error("Categoría con pk=%s no encontrada", self.kwargs['pk'])
+            raise
         subcategories = Category.objects.filter(parents=parent).annotate(
             children_count=Count('children')
         ).order_by('name')
-        # Construir cadena de ancestros para el breadcrumb
         ancestors = []
         node = parent
         while node.parents:

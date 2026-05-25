@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Configuraciones{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gray-100">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- Hero header -->
+    {% include "users/partials/header_module.html" %}
+
+    <!-- Layout -->
+    <div class="flex flex-col md:flex-row gap-6">
+
+      {% include "users/partials/menu_settings.html" %}
+
+      <!-- Contenido principal -->
+      <main class="flex-1 space-y-4">
+
+        <!-- Formulario para agregar/editar dirección -->
+        <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
+          <h2 class="text-xl font-semibold text-gray-900 mb-4">Agregar nueva dirección</h2>
+          <form method="post" action="{% url 'address_create' %}" class="space-y-4">
+            {% csrf_token %}
+
+            <!-- País -->
+            <div>
+              <label for="id_pais" class="block text-sm font-medium text-gray-700 mb-1">País</label>
+              <select name="pais" id="id_pais" class="{{ form.pais.field.widget.attrs.class }}">
+                <option value="">Cargando países…</option>
+              </select>
+              {% if form.pais.errors %}<p class="text-xs text-red-500 mt-1">{{ form.pais.errors|join:", " }}</p>{% endif %}
+            </div>
+
+            <!-- Estado -->
+            <div>
+              <label for="id_estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+              <select name="estado" id="id_estado" disabled class="{{ form.estado.field.widget.attrs.class }}">
+                <option value="">Selecciona un país primero</option>
+              </select>
+              {% if form.estado.errors %}<p class="text-xs text-red-500 mt-1">{{ form.estado.errors|join:", " }}</p>{% endif %}
+            </div>
+
+            <!-- Ciudad -->
+            <div>
+              <label for="id_ciudad" class="block text-sm font-medium text-gray-700 mb-1">Ciudad</label>
+              <select name="ciudad" id="id_ciudad" disabled class="{{ form.ciudad.field.widget.attrs.class }}">
+                <option value="">Selecciona un estado primero</option>
+              </select>
+              {% if form.ciudad.errors %}<p class="text-xs text-red-500 mt-1">{{ form.ciudad.errors|join:", " }}</p>{% endif %}
+            </div>
+
+            <!-- Resto de campos -->
+            <div>
+              <label for="id_calle" class="block text-sm font-medium text-gray-700 mb-1">Calle</label>
+              {{ form.calle }}
+              {% if form.calle.errors %}<p class="text-xs text-red-500 mt-1">{{ form.calle.errors|join:", " }}</p>{% endif %}
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="id_numero_exterior" class="block text-sm font-medium text-gray-700 mb-1">Núm. exterior</label>
+                {{ form.numero_exterior }}
+              </div>
+              <div>
+                <label for="id_numero_interior" class="block text-sm font-medium text-gray-700 mb-1">Núm. interior</label>
+                {{ form.numero_interior }}
+              </div>
+            </div>
+            <div>
+              <label for="id_codigo_postal" class="block text-sm font-medium text-gray-700 mb-1">Código postal</label>
+              {{ form.codigo_postal }}
+              {% if form.codigo_postal.errors %}<p class="text-xs text-red-500 mt-1">{{ form.codigo_postal.errors|join:", " }}</p>{% endif %}
+            </div>
+            <div>
+              <label for="id_referencias" class="block text-sm font-medium text-gray-700 mb-1">Referencias</label>
+              {{ form.referencias }}
+            </div>
+            <div>
+              <label for="id_telefono_input" class="block text-sm font-medium text-gray-700 mb-1">Teléfono de contacto</label>
+              {% if request.user.profile.telefono %}
+                <input type="text" value="{{ request.user.profile.telefono }}" readonly
+                  class="w-full px-3 py-2 border border-gray-200 rounded-lg text-gray-500 text-sm bg-gray-50 cursor-not-allowed">
+                <p class="text-xs text-gray-400 mt-1">Se usa el teléfono de tu perfil. Puedes cambiarlo en
+                  <a href="{% url 'edit_profile' %}" class="text-indigo-500 hover:underline">Información personal</a>.
+                </p>
+                {{ form.telefono_input }}
+              {% else %}
+                {{ form.telefono_input }}
+                {% if form.telefono_input.errors %}
+                  <p class="text-xs text-red-500 mt-1">{{ form.telefono_input.errors|join:", " }}</p>
+                {% endif %}
+                <p class="text-xs text-gray-400 mt-1">Este número también se guardará en tu perfil.</p>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition">
+              Guardar dirección
+            </button>
+          </form>
+        </div>
+
+        <script>
+          const selectPais   = document.getElementById('id_pais');
+          const selectEstado = document.getElementById('id_estado');
+          const selectCiudad = document.getElementById('id_ciudad');
+
+          function populateSelect(select, options, placeholder) {
+            select.innerHTML = `<option value="">${placeholder}</option>`;
+            options.forEach(val => {
+              const opt = document.createElement('option');
+              opt.value = val;
+              opt.textContent = val;
+              select.appendChild(opt);
+            });
+          }
+
+          // Cargar países al cargar la página
+          fetch("{% url 'api_countries' %}")
+            .then(r => r.json())
+            .then(data => {
+              populateSelect(selectPais, data.countries || [], 'Selecciona un país');
+            })
+            .catch(() => {
+              selectPais.innerHTML = '<option value="">Error al cargar países</option>';
+            });
+
+          // Al cambiar país → cargar estados
+          selectPais.addEventListener('change', function () {
+            selectEstado.disabled = true;
+            selectCiudad.disabled = true;
+            populateSelect(selectEstado, [], 'Cargando estados…');
+            populateSelect(selectCiudad, [], 'Selecciona un estado primero');
+
+            if (!this.value) return;
+
+            fetch(`{% url 'api_states' %}?country=${encodeURIComponent(this.value)}`)
+              .then(r => r.json())
+              .then(data => {
+                populateSelect(selectEstado, data.states || [], 'Selecciona un estado');
+                selectEstado.disabled = false;
+              })
+              .catch(() => {
+                selectEstado.innerHTML = '<option value="">Error al cargar estados</option>';
+              });
+          });
+
+          // Al cambiar estado → cargar ciudades
+          selectEstado.addEventListener('change', function () {
+            selectCiudad.disabled = true;
+            populateSelect(selectCiudad, [], 'Cargando ciudades…');
+
+            if (!this.value) return;
+
+            const country = encodeURIComponent(selectPais.value);
+            const state   = encodeURIComponent(this.value);
+
+            fetch(`{% url 'api_cities' %}?country=${country}&state=${state}`)
+              .then(r => r.json())
+              .then(data => {
+                populateSelect(selectCiudad, data.cities || [], 'Selecciona una ciudad');
+                selectCiudad.disabled = false;
+              })
+              .catch(() => {
+                selectCiudad.innerHTML = '<option value="">Error al cargar ciudades</option>';
+              });
+          });
+        </script>
+
+      </main>
+    </div>
+  </div>
+</div>
+{% endblock %}

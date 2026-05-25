@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Direcciones{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gray-100">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- Layout -->
+    <div class="flex flex-col md:flex-row gap-6">
+
+      {% include "users/partials/menu_settings.html" %}
+
+      <!-- Contenido principal -->
+      <main class="flex-1 space-y-4">
+        <h2 class="text-xl font-semibold text-gray-900">Direcciones de envío</h2>
+        <p class="text-gray-600">Administra tus direcciones de envío para facilitar el proceso de compra.</p>
+
+        <!-- Lista de direcciones -->
+        <div class="space-y-4">
+          {% for address in addresses %}
+            <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
+              <div class="flex items-center gap-4">
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-semibold text-gray-800">{{ address.label }}</p>
+                  <p class="text-xs text-gray-500 mt-0.5">{{ address.calle }} #{{ address.numero_exterior }}, {{ address.estado }}, {{ address.ciudad }}</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 transition">Editar</a>
+                  <span class="text-gray-300">|</span>
+                  <a href="#" class="text-sm text-red-500 hover:text-red-700 transition">Eliminar</a>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <p class="text-gray-500">No tienes direcciones guardadas. Agrega una nueva dirección para facilitar tus compras.</p>
+          {% endfor %}
+        </div>
+        <!-- Botón para agregar nueva dirección -->
+        <div>
+            <a href="{% url 'address_create' %}" class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Agregar nueva dirección
+            </a>
+        </div>
+        </main>
+    </div>
+    </div>
+{% endblock %}

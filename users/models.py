@@ -10,11 +10,6 @@ class Profile(models.Model):
     curp = models.CharField(max_length=20, blank=True, null=True)
     #identificador fiscal
     rfc = models.CharField(max_length=13, blank=True, null=True)
-    # plantear la eliminacion por datos repetidos, se puede eliminar
-    pais = models.CharField(max_length=255, blank=True, null=True)
-    estado = models.CharField(max_length=255, blank=True, null=True)
-    ciudad = models.CharField(max_length=255, blank=True, null=True)
-    calle = models.CharField(max_length=255, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     
     class Meta:

@@ -4,44 +4,9 @@ from .models import PaymentMethod, Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-	list_display = (
-		'user',
-		'telefono',
-		'curp',
-		'rfc',
-		'pais',
-		'estado',
-		'ciudad',
-	)
-	list_filter = ('pais', 'estado', 'ciudad')
+	list_display = ('user', 'telefono', 'fecha_nacimiento', 'curp', 'rfc')
 	search_fields = ('user__username', 'user__email', 'telefono', 'curp', 'rfc')
 	raw_id_fields = ('user',)
-	fieldsets = (
-		(
-			'Usuario',
-			{
-				'fields': ('user',),
-			},
-		),
-		(
-			'Datos personales',
-			{
-				'fields': ('telefono', 'fecha_nacimiento', 'curp', 'rfc'),
-			},
-		),
-		(
-			'Direccion',
-			{
-				'fields': ('pais', 'estado', 'ciudad', 'calle'),
-			},
-		),
-		(
-			'Imagen',
-			{
-				'fields': ('profile_picture',),
-			},
-		),
-	)
 
 
 @admin.register(PaymentMethod)

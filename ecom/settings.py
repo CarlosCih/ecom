@@ -168,3 +168,65 @@ PAGINATION_PAGE_SIZE = 40
 #STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 #STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 
+# Manejo de sistema de log para errores y depuración
+_LOG_APPS = ['cart', 'inventario', 'orders', 'users', 'myapp']
+for _app in _LOG_APPS:
+    (BASE_DIR / _app / 'logs').mkdir(parents=True, exist_ok=True)
+(BASE_DIR / 'logs').mkdir(exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[{levelname}] {asctime} | {module} | {message}',
+            'style': '{',
+            'datefmt': '%d/%m/%Y %H:%M:%S',
+        },
+    },
+    'handlers': {
+        **{
+            f'{app}_file': {
+                'level': 'WARNING',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': BASE_DIR / app / 'logs' / f'{app}.log',
+                'maxBytes': 1024 * 1024 * 5,  # 5 MB
+                'backupCount': 3,
+                'formatter': 'verbose',
+                'encoding': 'utf-8',
+            }
+            for app in _LOG_APPS
+        },
+        'django_file': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'maxBytes': 1024 * 1024 * 5,
+            'backupCount': 3,
+            'formatter': 'verbose',
+            'encoding': 'utf-8',
+        },
+    },
+    'loggers': {
+        **{
+            app: {
+                'handlers': [f'{app}_file'],
+                'level': 'WARNING',
+                'propagate': False,
+            }
+            for app in _LOG_APPS
+        },
+        'django': {
+            'handlers': ['django_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['django_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+
+
