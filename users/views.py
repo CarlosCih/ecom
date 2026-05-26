@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
@@ -13,13 +13,15 @@ from django.core.mail import EmailMultiAlternatives
 from users import forms
 from users.forms import CreateUserForm, LoginForm, ProfileForm, UserUpdateForm
 from .models import Address, Profile
-from .token import account_activation_token
+from .token import account_activation_token, password_reset_token
 import logging
 import requests
 
 COUNTRIESNOW_BASE = "https://countriesnow.space/api/v0.1"
 
 logger = logging.getLogger('users')
+
+
 
 @require_GET
 def get_countries(request):
@@ -88,8 +90,7 @@ def email_verification_success(request):
 def email_verification_failed(request):
     return render(request, 'email/verificacion/verificacion_cuenta_failed.html')
 
-def email_verification_sent(request):
-    return render(request, 'email/verificacion/verificacion_cuenta_sent.html')
+
 
 class RegisterView(View):
     def get(self, request):
@@ -241,7 +242,47 @@ class AddressCreateView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
     
 class AddressUpdateView(LoginRequiredMixin, View):
-    pass
+    login_url = 'login'
+    template_name = 'configuraciones/direcciones/form.html'
+
+    def get(self, request, pk):
+        address = get_object_or_404(Address, pk=pk, user=request.user)
+        form = forms.AddressForm(instance=address, user=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        address = get_object_or_404(Address, pk=pk, user=request.user)
+        form = forms.AddressForm(request.POST, instance=address, user=request.user)
+        if form.is_valid():
+            form.save()
+            logger.info("Dirección actualizada para el usuario '%s'", request.user.username)
+            return redirect('address_list')
+        logger.warning("Formulario inválido al actualizar dirección para '%s': %s", request.user.username, form.errors)
+        return render(request, self.template_name, {'form': form})
 
 class AddressDeleteView(LoginRequiredMixin, View):
-    pass
+    login_url = 'login'
+    template_name = 'configuraciones/direcciones/confirm_delete.html'
+
+    def get(self, request, pk):
+        address = get_object_or_404(Address, pk=pk, user=request.user)
+        return render(request, self.template_name, {'address': address})
+
+    def post(self, request, pk):
+        address = get_object_or_404(Address, pk=pk, user=request.user)
+        address.delete()
+        logger.info("Dirección eliminada para el usuario '%s'", request.user.username)
+        return redirect('address_list')
+
+class PasswordChangeView(LoginRequiredMixin, View):
+    login_url = 'login'
+    template_name = 'configuraciones/cambiar_contraseña.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
+    
+    def post(self, request):
+        # Aquí se podría manejar la lógica para cambiar la contraseña del usuario
+        return render(request, self.template_name)
+
+    
