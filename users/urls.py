@@ -18,7 +18,11 @@ urlpatterns = [
     path('email-verification/<str:uidb64>/<str:token>/', views.email_verification, name='email_verification'),
     path('email-verification/success/', views.email_verification_success, name='email_verification_success'),
     path('email-verification/failed/', views.email_verification_failed, name='email_verification_failed'),
-    path('email-verification/sent/', views.email_verification_sent, name='email_verification_sent'),
+    
+    # Password reset
+    path('password-recovery/', views.PasswordRecoveryView.as_view(), name='password_recovery'),
+    path('password-reset-confirm/<str:uidb64>/<str:token>/', views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password-reset-complete/', views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     
     # API endpoints
     path('api/countries/', views.get_countries, name='api_countries'),

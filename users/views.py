@@ -1,13 +1,16 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.decorators.http import require_GET, require_POST
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 
 from users import forms
@@ -20,6 +23,18 @@ import requests
 COUNTRIESNOW_BASE = "https://countriesnow.space/api/v0.1"
 
 logger = logging.getLogger('users')
+
+
+def get_password_reset_form(user, data=None):
+    form = SetPasswordForm(user, data)
+    input_class = (
+        'block w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 '
+        'text-sm text-gray-900 shadow-sm placeholder:text-gray-400 '
+        'focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100'
+    )
+    for field in form.fields.values():
+        field.widget.attrs.update({'class': input_class})
+    return form
 
 
 
@@ -159,8 +174,92 @@ class PasswordRecoveryView(View):
         return render(request, 'users/password_recovery.html')
     
     def post(self, request):
-        # Aquí se podría manejar la lógica para enviar un email de recuperación de contraseña
-        return render(request, 'users/password_recovery.html')
+        # Se recibe el email del formulario
+        email = request.POST.get('email')
+        user = forms.User.objects.filter(email__iexact=email).first()
+
+        if user:
+            # Se genera un token de recuperación de contraseña
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = password_reset_token.make_token(user)
+            reset_url = request.build_absolute_uri(
+                reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            )
+            current_site = get_current_site(request)
+            # Se manda el email de recuperación al usuario con el token
+            subject = "Recuperación de contraseña"
+            html_message = render_to_string('email/recuperacion/recuperacion_contraseña.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': uid,
+                'token': token,
+                'reset_url': reset_url,
+            })
+            text_message = strip_tags(html_message)
+            # Enviar el email al usuario como HTML
+            try:
+                email_message = EmailMultiAlternatives(
+                    subject=subject,
+                    body=text_message,
+                    to=[user.email],
+                )
+                email_message.attach_alternative(html_message, 'text/html')
+                email_message.send()
+            except Exception as e:
+                logger.error("Error al enviar email de recuperación a '%s': %s", user.email, e, exc_info=True)
+                return render(request, 'users/password_recovery.html', {
+                    'error': 'No se pudo enviar el correo en este momento. Inténtalo de nuevo más tarde.'
+                })
+        else:
+            logger.warning("Intento de recuperación de contraseña para email no registrado: '%s'", email)
+        # 
+        return render(request, 'users/password_recovery_sent.html')
+    
+class PasswordResetConfirmView(View):
+    def get(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = forms.User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, forms.User.DoesNotExist) as e:
+            logger.warning("Confirmación de recuperación fallida al decodificar uid '%s': %s", uidb64, e)
+            user = None
+
+        if user is not None and password_reset_token.check_token(user, token):
+            form = get_password_reset_form(user)
+            return render(request, 'users/password_reset_confirm.html', {
+                'validlink': True,
+                'form': form,
+            })
+        else:
+            logger.warning("Token de recuperación inválido para uid '%s'", uidb64)
+            return render(request, 'users/password_reset_confirm.html', {'validlink': False})
+        
+    def post(self, request, uidb64, token):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = forms.User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, forms.User.DoesNotExist) as e:
+            logger.warning("Confirmación de recuperación fallida al decodificar uid '%s': %s", uidb64, e)
+            user = None
+
+        if user is None or not password_reset_token.check_token(user, token):
+            logger.warning("Token de recuperación inválido para uid '%s'", uidb64)
+            return render(request, 'users/password_reset_confirm.html', {'validlink': False})
+
+        form = get_password_reset_form(user, request.POST)
+        if form.is_valid():
+            form.save()
+            logger.info("Contraseña restablecida para el usuario '%s'", user.username)
+            return redirect('password_reset_complete')
+
+        return render(request, 'users/password_reset_confirm.html', {
+            'validlink': True,
+            'form': form,
+        })
+
+class PasswordResetCompleteView(View):
+    def get(self, request):
+        return render(request, 'users/password_reset_complete.html')
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = 'login'
