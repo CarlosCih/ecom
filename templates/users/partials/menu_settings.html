@@ -5,17 +5,17 @@
         <h2 class="text-xl font-semibold text-gray-900 mb-4">Configuración</h2>
         <ul class="space-y-1">
             <li>
-                <a href="{% url 'edit_profile' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.path == '/users/profile/informacion_personal/' %}bg-indigo-50 text-indigo-700{% endif %}">
+                <a href="{% url 'edit_profile' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.resolver_match.url_name == 'edit_profile' %}bg-indigo-50 text-indigo-700{% endif %}">
                     Información personal
                 </a>
             </li>
             <li>
-                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                <a href="{% url 'password_change' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.resolver_match.url_name == 'password_change' %}bg-indigo-50 text-indigo-700{% endif %}">
                     Cambiar contraseña
                 </a>
             </li>
             <li>
-                <a href="{% url 'address_list' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                <a href="{% url 'address_list' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.resolver_match.url_name == 'address_list' or request.resolver_match.url_name == 'address_create' or request.resolver_match.url_name == 'address_edit' or request.resolver_match.url_name == 'address_delete' %}bg-indigo-50 text-indigo-700{% endif %}">
                     Direcciones de envío
                 </a>
             </li>

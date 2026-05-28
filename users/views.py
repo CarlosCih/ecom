@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import login, logout
-from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth import login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.decorators.http import require_GET, require_POST
@@ -266,7 +266,13 @@ class ProfileView(LoginRequiredMixin, View):
 
     def get(self, request):
         profile, _ = Profile.objects.get_or_create(user=request.user)
-        return render(request, 'users/perfil.html', {'profile': profile})
+        addresses = Address.objects.filter(user=request.user)
+        active_address = addresses.order_by('-is_default', '-id').first()
+        return render(request, 'users/perfil.html', {
+            'profile': profile,
+            'active_address': active_address,
+            'address_count': addresses.count(),
+        })
     def post(self, request):
         # Aquí se podrían manejar las actualizaciones del perfil del usuario
         return render(request, 'users/perfil.html')
@@ -376,12 +382,26 @@ class AddressDeleteView(LoginRequiredMixin, View):
 class PasswordChangeView(LoginRequiredMixin, View):
     login_url = 'login'
     template_name = 'configuraciones/cambiar_contraseña.html'
-    
+
     def get(self, request):
-        return render(request, self.template_name)
+        form = PasswordChangeForm(request.user)
+        return render(request, self.template_name, {'form': form})
     
     def post(self, request):
-        # Aquí se podría manejar la lógica para cambiar la contraseña del usuario
-        return render(request, self.template_name)
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            logger.info("Contraseña cambiada para el usuario '%s'", request.user.username)
+            return render(request, self.template_name, {
+                'form': PasswordChangeForm(request.user),
+                'success_message': 'Tu contraseña se actualizó correctamente.',
+            })
+
+        logger.warning(
+            "Formulario inválido al cambiar contraseña para '%s': %s",
+            request.user.username, form.errors
+        )
+        return render(request, self.template_name, {'form': form})
 
     

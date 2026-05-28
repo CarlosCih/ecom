@@ -5,37 +5,141 @@
 {% block body %}
 <div class="min-h-screen bg-gray-100">
     <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    {% include "users/partials/header_module.html" %}
+        
+
         <!-- Layout -->
         <div class="flex flex-col md:flex-row gap-6">
 
             {% include "users/partials/menu_settings.html" %}
 
             <!-- Contenido principal -->
-            <main class="flex-1 space-y-4">
-                <h2 class="text-xl font-semibold text-gray-900">Cambiar contraseña</h2>
-                <p class="text-gray-600">Actualiza tu contraseña para mantener tu cuenta segura.</p>
+            <main class="flex-1">
+                <div class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-100">
+                    <div class="border-b border-gray-100 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-6">
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div class="flex items-start gap-4">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 ring-1 ring-amber-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-widest text-amber-700">Seguridad</p>
+                                    <h2 class="mt-1 text-2xl font-semibold text-gray-900">Cambiar contraseña</h2>
+                                    <p class="mt-1 text-sm text-gray-600">Actualiza tu clave de acceso y mantén protegida tu cuenta.</p>
+                                </div>
+                            </div>
+                            <a href="{% url 'settings' %}" class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                                </svg>
+                                Volver
+                            </a>
+                        </div>
+                    </div>
 
-                <!-- Formulario de cambio de contraseña -->
-                <form method="post" action="{% url 'password_change' %}" class="space-y-6">
-                    {% csrf_token %}
-                    <div class="mb-4">
-                        <label for="old_password" class="block text-sm font-medium text-gray-700">Contraseña actual</label>
-                        <input type="password" name="old_password" id="old_password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <div class="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+                        <!-- Formulario de cambio de contraseña -->
+                        <form method="post" action="{% url 'password_change' %}" class="space-y-5">
+                            {% csrf_token %}
+
+                            {% if success_message %}
+                                <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                                    {{ success_message }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.non_field_errors %}
+                                <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                                    {{ form.non_field_errors|join:", " }}
+                                </div>
+                            {% endif %}
+
+                            <div>
+                                <label for="old_password" class="block text-sm font-medium text-gray-800">Contraseña actual</label>
+                                <div class="relative mt-2">
+                                    <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 10.5h10.5A2.25 2.25 0 0019.5 18.75v-6A2.25 2.25 0 0017.25 10.5H6.75A2.25 2.25 0 004.5 12.75v6A2.25 2.25 0 006.75 21z" />
+                                        </svg>
+                                    </span>
+                                    <input type="password" name="old_password" id="old_password" required class="block w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+                                </div>
+                                {% if form.old_password.errors %}
+                                    <p class="mt-1.5 text-xs font-medium text-red-600">{{ form.old_password.errors|join:", " }}</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label for="new_password1" class="block text-sm font-medium text-gray-800">Nueva contraseña</label>
+                                    <div class="relative mt-2">
+                                        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 11-4.243 4.243L6.75 14.25H4.5v2.25H2.25v3h3v-2.25H7.5L12.257 12.5A3 3 0 1115.75 5.25z" />
+                                            </svg>
+                                        </span>
+                                        <input type="password" name="new_password1" id="new_password1" autocomplete="new-password" required class="block w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+                                    </div>
+                                    {% if form.new_password1.errors %}
+                                        <p class="mt-1.5 text-xs font-medium text-red-600">{{ form.new_password1.errors|join:", " }}</p>
+                                    {% endif %}
+                                </div>
+
+                                <div>
+                                    <label for="new_password2" class="block text-sm font-medium text-gray-800">Confirmar contraseña</label>
+                                    <div class="relative mt-2">
+                                        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </span>
+                                        <input type="password" name="new_password2" id="new_password2" autocomplete="new-password" required class="block w-full rounded-xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100">
+                                    </div>
+                                    {% if form.new_password2.errors %}
+                                        <p class="mt-1.5 text-xs font-medium text-red-600">{{ form.new_password2.errors|join:", " }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col-reverse gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-end">
+                                <a href="{% url 'settings' %}" class="inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100 transition">
+                                    Cancelar
+                                </a>
+                                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-100 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    </svg>
+                                    Guardar cambios
+                                </button>
+                            </div>
+                        </form>
+
+                        <aside class="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-indigo-600 shadow-sm ring-1 ring-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75A11.959 11.959 0 0112 2.714z" />
+                                </svg>
+                            </div>
+                            <h3 class="mt-4 text-sm font-semibold text-gray-900">Recomendaciones</h3>
+                            <ul class="mt-3 space-y-3 text-sm text-gray-600">
+                                <li class="flex gap-2">
+                                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span>
+                                    Usa al menos 8 caracteres.
+                                </li>
+                                <li class="flex gap-2">
+                                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span>
+                                    Combina letras, números y símbolos.
+                                </li>
+                                <li class="flex gap-2">
+                                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span>
+                                    Evita reutilizar contraseñas de otros sitios.
+                                </li>
+                            </ul>
+                        </aside>
                     </div>
-                    <div class="mb-4">
-                        <label for="new_password1" class="block text-sm font-medium text-gray-700">Nueva contraseña</label>
-                        <input type="password" name="new_password1" id="new_password1" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                    <div class="mb-4">
-                        <label for="new_password2" class="block text-sm font-medium text-gray-700">Confirmar nueva contraseña</label>
-                        <input type="password" name="new_password2" id="new_password2" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit" class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition">
-                        Guardar cambios
-                        </button>
-                    </div>
-                </form>
+                </div>
             </main>
         </div>
     </div>

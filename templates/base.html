@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'assets/icon_ecommer.png' %}" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -72,11 +73,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15a3 3 0 00-3-3m-12-6h15m-12 0l1.384 5.523a1.125 1.125 0 001.087.652h7.35a1.125 1.125 0 001.087-.652L21 8.25M5.106 18.666A2.25 2.25 0 107.5 20.25c-.621 0-1.208-.26-1.594-.684zm0 0L5.106 18zM14.25 18.666A2.25 2.25 0 1016.734 20.25c-.621 0-1.208-.26-1.594-.684zm0 0L14.25 18z" />
                             </svg>
-                                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full" id="cart-count">
-                                        {% with quant=cart|length %}
-                                        {% if quant > 0 %}{{ quant }}{% else %}0{% endif %}
-                                        {% endwith %}
-                                    </span>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full" id="cart-count">
+                                {% with quant=cart|length %}
+                                {% if quant > 0 %}{{ quant }}{% else %}0{% endif %}
+                                {% endwith %}
+                            </span>
                         </a>
 
                         <!-- Profile dropdown -->
@@ -118,8 +119,8 @@
                 <div class="space-y-1 px-2 pt-2 pb-3">
                     <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                     <input type="text" name="search" id="search-mobile" placeholder="Buscar productos..." class="block w-full rounded-md border-0 bg-gray-700/50 px-3 py-2 pl-10 text-sm text-gray-300 placeholder-gray-400 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-inset mb-3">
-                    <a href="#" aria-current="page" class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white">Inicio</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Categorias</a>
+                    <a href="{% url 'home' %}" aria-current="page" class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white">Inicio</a>
+                    <a href="{% url 'category_list' %}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Categorias</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Productos</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Ofertas</a>
                     <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Nosotros</a>
