@@ -167,8 +167,11 @@ SERVER_EMAIL = EMAIL_HOST_USER
 PAGINATION_PAGE_SIZE = 40
 
 # Configuración para el sistema de stripe
-#STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
-#STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_RESTRICTED_KEY = env('STRIPE_RESTRICTED_KEY', default='')
+STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET', default='')
+STRIPE_CURRENCY = env('STRIPE_CURRENCY', default='mxn')
 
 # Manejo de sistema de log para errores y depuración
 _LOG_APPS = ['cart', 'inventario', 'orders', 'users', 'myapp']

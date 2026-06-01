@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Pago recibido{% endblock title %}
+
+{% block body %}
+<main class="mx-auto max-w-3xl px-4 py-16 text-center">
+    <h1 class="text-3xl font-bold text-slate-950">Pago recibido</h1>
+    <p class="mt-3 text-slate-600">Gracias por tu compra. Estamos procesando tu pedido.</p>
+    <a href="{% url 'home' %}" class="mt-8 inline-flex rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white">
+        Volver al catalogo
+    </a>
+</main>
+{% endblock %}
