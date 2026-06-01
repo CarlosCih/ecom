@@ -1,0 +1,70 @@
+<div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+    <div class="inline-flex w-fit items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-indigo-600 text-sm font-bold text-white">{{ item_count }}</span>
+        <span>
+            <span class="block font-semibold text-slate-900">{{ item_label|safe }}{{ item_count|pluralize }}</span>
+            <span class="text-xs text-slate-500">disponible{{ item_count|pluralize }}</span>
+        </span>
+    </div>
+
+    <div class="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm" aria-label="Cambiar vista">
+        <button type="button"
+                class="category-view-button inline-flex h-9 w-9 items-center justify-center rounded-md bg-indigo-600 text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                data-view="cards"
+                aria-label="Vista por cartas"
+                aria-pressed="true">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M3 4.75A1.75 1.75 0 014.75 3h3.5A1.75 1.75 0 0110 4.75v3.5A1.75 1.75 0 018.25 10h-3.5A1.75 1.75 0 013 8.25v-3.5zM12 4.75A1.75 1.75 0 0113.75 3h1.5A1.75 1.75 0 0117 4.75v3.5A1.75 1.75 0 0115.25 10h-1.5A1.75 1.75 0 0112 8.25v-3.5zM3 13.75A1.75 1.75 0 014.75 12h3.5A1.75 1.75 0 0110 13.75v1.5A1.75 1.75 0 018.25 17h-3.5A1.75 1.75 0 013 15.25v-1.5zM12 13.75A1.75 1.75 0 0113.75 12h1.5A1.75 1.75 0 0117 13.75v1.5A1.75 1.75 0 0115.25 17h-1.5A1.75 1.75 0 0112 15.25v-1.5z" />
+            </svg>
+        </button>
+        <button type="button"
+                class="category-view-button inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                data-view="list"
+                aria-label="Vista por lista"
+                aria-pressed="false">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M4 5.5A1.5 1.5 0 015.5 4h9A1.5 1.5 0 0116 5.5v.25A1.5 1.5 0 0114.5 7h-9A1.5 1.5 0 014 5.75V5.5zM4 10a1.5 1.5 0 011.5-1.5h9A1.5 1.5 0 0116 10v.25a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 014 10.25V10zM5.5 13A1.5 1.5 0 004 14.5v.25A1.5 1.5 0 005.5 16h9a1.5 1.5 0 001.5-1.5v-.25a1.5 1.5 0 00-1.5-1.5h-9z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        const storageKey = 'inventoryCategoryView';
+        const buttons = document.querySelectorAll('.category-view-button');
+        const layouts = document.querySelectorAll('[data-category-layout]');
+
+        if (!buttons.length || !layouts.length) return;
+
+        function setView(view) {
+            const nextView = view === 'list' ? 'list' : 'cards';
+            localStorage.setItem(storageKey, nextView);
+
+            layouts.forEach(function (layout) {
+                layout.classList.toggle('hidden', layout.dataset.categoryLayout !== nextView);
+            });
+
+            buttons.forEach(function (button) {
+                const isActive = button.dataset.view === nextView;
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                button.classList.toggle('bg-indigo-600', isActive);
+                button.classList.toggle('text-white', isActive);
+                button.classList.toggle('hover:bg-indigo-700', isActive);
+                button.classList.toggle('text-slate-500', !isActive);
+                button.classList.toggle('hover:bg-slate-100', !isActive);
+                button.classList.toggle('hover:text-slate-900', !isActive);
+            });
+        }
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                setView(button.dataset.view);
+            });
+        });
+
+        setView(localStorage.getItem(storageKey) || 'cards');
+    });
+})();
+</script>

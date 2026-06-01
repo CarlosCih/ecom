@@ -3,79 +3,47 @@
 {% block title %}{{ parent.name }}{% endblock %}
 
 {% block body %}
-<div class="min-h-screen bg-gray-50 py-10 sm:px-6 lg:px-8">
-
-    <!-- Header -->
-    <div class="bg-white border-b border-gray-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">{{ parent.name }}</h1>
-            <p class="mt-1 text-sm text-gray-500">{{ subcategories|length }} subcategoría{{ subcategories|length|pluralize }}</p>
-        </div>
-    </div>
-
-    <!-- Breadcrumb -->
-    <div class="bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <ol class="flex items-center space-x-2 text-sm text-gray-500">
-                <li>
-                    <a href="{% url 'home' %}" class="hover:text-indigo-600 transition-colors">Inicio</a>
-                </li>
-                <li><span class="text-gray-300">/</span></li>
-                <li>
-                    <a href="{% url 'category_list' %}" class="hover:text-indigo-600 transition-colors">Categorías</a>
-                </li>
+<div class="min-h-screen bg-slate-50">
+    <section class="border-b border-slate-200 bg-white">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <nav class="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-500" aria-label="Breadcrumb">
+                <a href="{% url 'home' %}" class="font-medium hover:text-indigo-600">Inicio</a>
+                <svg class="h-4 w-4 text-slate-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.22 14.78a.75.75 0 010-1.06L10.94 10 7.22 6.28a.75.75 0 111.06-1.06l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0z" clip-rule="evenodd" />
+                </svg>
+                <a href="{% url 'category_list' %}" class="font-medium hover:text-indigo-600">Categor&iacute;as</a>
                 {% for ancestor in ancestors %}
-                <li><span class="text-gray-300">/</span></li>
-                <li>
-                    <a href="{% url 'subcategory_list' ancestor.id %}" class="hover:text-indigo-600 transition-colors">{{ ancestor.name }}</a>
-                </li>
+                <svg class="h-4 w-4 text-slate-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.22 14.78a.75.75 0 010-1.06L10.94 10 7.22 6.28a.75.75 0 111.06-1.06l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0z" clip-rule="evenodd" />
+                </svg>
+                <a href="{% url 'subcategory_list' ancestor.id %}" class="font-medium hover:text-indigo-600">{{ ancestor.name }}</a>
                 {% endfor %}
-                <li><span class="text-gray-300">/</span></li>
-                <li class="text-gray-900 font-medium truncate max-w-xs">{{ parent.name }}</li>
-            </ol>
-        </div>
-    </div>
+                <svg class="h-4 w-4 text-slate-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.22 14.78a.75.75 0 010-1.06L10.94 10 7.22 6.28a.75.75 0 111.06-1.06l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="max-w-xs truncate font-semibold text-slate-900">{{ parent.name }}</span>
+            </nav>
 
-    <!-- Subcategory Grid -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {% if subcategories %}
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {% for subcategory in subcategories %}
-            <a href="{% if subcategory.children_count %}{% url 'subcategory_list' subcategory.id %}{% else %}{% url 'category_products' subcategory.id %}{% endif %}" class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col">
-
-                <!-- Image -->
-                <div class="relative overflow-hidden bg-gray-100 aspect-square">
-                    {% if subcategory.image %}
-                    <img src="{{ subcategory.image.url }}" alt="{{ subcategory.name }}"
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                    {% else %}
-                    <div class="w-full h-full flex items-center justify-center text-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    {% endif %}
+            <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600">Subcategor&iacute;as</p>
+                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">{{ parent.name }}</h1>
+                    <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+                        {% if parent.description %}
+                        {{ parent.description }}
+                        {% else %}
+                        Explora las secciones disponibles y encuentra productos relacionados con esta categor&iacute;a.
+                        {% endif %}
+                    </p>
                 </div>
 
-                <!-- Name -->
-                <div class="p-4 flex items-center justify-center">
-                    <h3 class="text-lg font-medium text-gray-900">{{ subcategory.name }}</h3>
-                </div>
-
-            </a>
-            {% endfor %}
+                {% include "inventario/_category_view_toggle.html" with item_count=subcategories|length item_label="Subcategor&iacute;a" only %}
+            </div>
         </div>
-        {% else %}
-        <div class="flex flex-col items-center justify-center py-24 text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <p class="text-lg font-medium">No hay categorías disponibles</p>
-        </div>
-        {% endif %}
-    </div>
+    </section>
 
+    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        {% include "inventario/_category_grid.html" with category_items=subcategories empty_title="No hay subcategor&iacute;as disponibles" empty_message="Cuando agregues subcategor&iacute;as, aparecer&aacute;n aqu&iacute;." only %}
+    </main>
 </div>
 {% endblock %}

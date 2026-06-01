@@ -1,116 +1,171 @@
 {% extends "base.html" %}
 {% load static inventario_tags %}
 {% block title %}Carrito de Compras{% endblock title %}
+
 {% block body %}
-<div class="min-h-screen bg-gray-50 py-10 sm:px-6 ">
-    <div class="mx-auto max-w-4xl">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Carrito de Compras</h1>
+<div class="min-h-screen bg-slate-50">
+    <section class="border-b border-slate-200 bg-white">
+        <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600">Resumen de compra</p>
+                    <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Carrito de compras</h1>
+                    <p class="mt-3 text-sm leading-6 text-slate-600">
+                        Revisa cantidades, elimina productos o contin&uacute;a explorando el cat&aacute;logo.
+                    </p>
+                </div>
+
+                <a href="{% url 'home' %}" class="inline-flex w-fit items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-indigo-200 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+                    </svg>
+                    Seguir comprando
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         {% if cart %}
-        <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
-            <form action="#" method="post">
-                {% csrf_token %}
-                <table class="w-full text-sm text-left">
-                    <thead class="bg-gray-700 text-gray-300 uppercase text-xs tracking-wider">
-                        <tr>
-                            <th class="px-6 py-4"></th>
-                            <th class="px-6 py-4">Producto</th>
-                            <th class="px-6 py-4 text-center">Cantidad</th>
-                            <th class="px-6 py-4 text-right">Precio Unitario</th>
-                            <th class="px-6 py-4 text-right">Precio Total</th>
-                            <th class="px-6 py-4"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-700">
-                        {% for item in cart %}
-                        <tr class="text-gray-200 hover:bg-gray-700/50 transition-colors duration-150"
-                        data-price="{{ item.price }}"
-                        data-id="{{ item.product.id }}">
-                            <td class="px-6 py-4">
-                                {% if item.product.image %}
-                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-lg">
-                                {% else %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                {% endif %}
-                            </td>
-                            <td class="px-6 py-4 font-medium">{{ item.product.name }}</td>
-                            <!-- Cantidad con select -->
-                            <td class="px-6 py-4 text-center">
-                                <span class="inline-block bg-indigo-600/30 text-indigo-300 font-semibold rounded-full px-3 py-0.5">
-                                    <select name="quantity_{{ item.product.id }}" id="quantity_{{ item.product.id }}">
+        <form action="#" method="post" class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+            {% csrf_token %}
+
+            <section class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                <div class="border-b border-slate-200 px-5 py-4">
+                    <h2 class="text-base font-semibold text-slate-950">Productos en tu carrito</h2>
+                    <p class="mt-1 text-sm text-slate-500">Actualiza cantidades antes de proceder al pago.</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[760px] text-left text-sm">
+                        <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                            <tr>
+                                <th class="px-5 py-3 font-semibold">Producto</th>
+                                <th class="px-5 py-3 text-center font-semibold">Cantidad</th>
+                                <th class="px-5 py-3 text-right font-semibold">Precio unitario</th>
+                                <th class="px-5 py-3 text-right font-semibold">Subtotal</th>
+                                <th class="px-5 py-3 text-right font-semibold"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            {% for item in cart %}
+                            <tr class="text-slate-700 transition hover:bg-slate-50"
+                                data-price="{{ item.price }}"
+                                data-id="{{ item.product.id }}">
+                                <td class="px-5 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                                            {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="h-full w-full object-cover">
+                                            {% else %}
+                                            <div class="flex h-full w-full items-center justify-center text-slate-300">
+                                                <svg class="h-9 w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25" d="M3 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2 1.586-1.586a2 2 0 012.828 0L21 15M14 8h.01M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="min-w-0">
+                                            <p class="font-semibold text-slate-950">{{ item.product.name }}</p>
+                                            <p class="mt-1 text-xs text-slate-500">Stock disponible: {{ item.product.stock }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-4 text-center">
+                                    <select name="quantity_{{ item.product.id }}"
+                                            id="quantity_{{ item.product.id }}"
+                                            class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-indigo-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
                                         {% for i in 1|to:item.product.stock %}
                                         <option value="{{ i }}" {% if i == item.quantity %}selected{% endif %}>{{ i }}</option>
                                         {% endfor %}
                                     </select>
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 text-right text-gray-300">${{ item.price }}</td>
-                            <td class="px-6 py-4 text-right font-semibold text-white"
-                            id="total-{{ item.product.id }}">${{ item.total_price }}</td>
-                            <td class="px-6 py-4 text-right">
-                                <button type="button" class="btn-remove text-red-500 hover:text-red-400 transition-colors cursor-pointer"
-                                    data-url="{% url 'remove_from_cart' %}"
-                                    data-id="{{ item.product.id }}"
-                                    data-name="{{ item.product.name }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
-                                </button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                </td>
+                                <td class="px-5 py-4 text-right font-medium text-slate-600">${{ item.price }}</td>
+                                <td class="px-5 py-4 text-right text-base font-bold text-slate-950" id="total-{{ item.product.id }}">${{ item.total_price }}</td>
+                                <td class="px-5 py-4 text-right">
+                                    <button type="button"
+                                            class="btn-remove inline-flex h-9 w-9 items-center justify-center rounded-lg text-red-500 transition hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                                            data-url="{% url 'remove_from_cart' %}"
+                                            data-id="{{ item.product.id }}"
+                                            data-name="{{ item.product.name }}"
+                                            aria-label="Eliminar {{ item.product.name }}">
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M3 6h18"></path>
+                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                            <line x1="10" x2="10" y1="11" y2="17"></line>
+                                            <line x1="14" x2="14" y1="11" y2="17"></line>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-                <div class="flex justify-between items-center px-6 py-5 bg-gray-700/50 border-t border-gray-600">
-                    <a href="{% url 'home' %}" class="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
-                        ← Seguir comprando
-                    </a>
-                    <div class="flex items-center gap-6">
-                        <span class="text-gray-300 text-sm">Total</span>
-                        <span class="text-2xl font-bold text-white" id="cart-total">${{ cart.get_total_price }}</span>
-                        <a href="#" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150">
-                            Proceder al pago
-                        </a>
+            <aside class="h-fit rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <h2 class="text-base font-semibold text-slate-950">Total del pedido</h2>
+                <div class="mt-5 space-y-4">
+                    <div class="flex items-center justify-between text-sm text-slate-600">
+                        <span>Subtotal</span>
+                        <span class="font-semibold text-slate-950" id="cart-total">${{ cart.get_total_price }}</span>
+                    </div>
+                    <div class="flex items-center justify-between text-sm text-slate-600">
+                        <span>Env&iacute;o</span>
+                        <span class="font-semibold text-slate-950">Por calcular</span>
+                    </div>
+                    <div class="border-t border-slate-200 pt-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold text-slate-700">Total</span>
+                            <span class="text-2xl font-bold text-slate-950" id="cart-total-summary">${{ cart.get_total_price }}</span>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
 
+                <a href="#" class="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Proceder al pago
+                </a>
+                <p class="mt-3 text-center text-xs leading-5 text-slate-500">Puedes modificar cantidades antes de confirmar tu compra.</p>
+            </aside>
+        </form>
         {% else %}
-        <div class="flex flex-col items-center justify-center py-24 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-600 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15a3 3 0 00-3-3m-12-6h15m-12 0l1.384 5.523a1.125 1.125 0 001.087.652h7.35a1.125 1.125 0 001.087-.652L21 8.25" />
-            </svg>
-            <p class="text-gray-400 text-lg mb-4">Tu carrito está vacío.</p>
-            <a href="{% url 'home' %}" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors duration-150">
+        <div class="rounded-lg border border-dashed border-slate-300 bg-white px-6 py-20 text-center shadow-sm">
+            <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-lg bg-slate-100 text-slate-400">
+                <svg class="h-9 w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15a3 3 0 00-3-3m-12-6h15m-12 0 1.384 5.523a1.125 1.125 0 001.087.852h7.35a1.125 1.125 0 001.087-.852L21 8.25" />
+                </svg>
+            </div>
+            <h2 class="mt-5 text-lg font-semibold text-slate-950">Tu carrito est&aacute; vac&iacute;o</h2>
+            <p class="mt-2 text-sm text-slate-500">Agrega productos al carrito para verlos aqu&iacute;.</p>
+            <a href="{% url 'home' %}" class="mt-6 inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Ver productos
             </a>
         </div>
         {% endif %}
-    </div>
+    </main>
 </div>
+
 <script>
-    // --- Eliminar producto del carrito ---
     document.querySelectorAll('.btn-remove').forEach(btn => {
         btn.addEventListener('click', function () {
-            const productId   = this.dataset.id;
+            const productId = this.dataset.id;
             const productName = this.dataset.name;
-            const url         = this.dataset.url;
-            const row         = this.closest('tr');
+            const url = this.dataset.url;
+            const row = this.closest('tr[data-price]');
 
             Swal.fire({
-                title: '¿Eliminar producto?',
-                text: `"${productName}" será eliminado del carrito.`,
+                title: '\u00bfEliminar producto?',
+                text: `"${productName}" ser\u00e1 eliminado del carrito.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#ef4444',
                 cancelButtonColor: '#6b7280',
-                confirmButtonText: 'Sí, eliminar',
+                confirmButtonText: 'S\u00ed, eliminar',
                 cancelButtonText: 'Cancelar',
-                background: '#1f2937',
-                color: '#f3f4f6',
+                background: '#ffffff',
+                color: '#0f172a',
             }).then(result => {
                 if (!result.isConfirmed) return;
 
@@ -122,16 +177,11 @@
                         csrfmiddlewaretoken: getCookie('csrftoken'),
                     },
                     success: function (json) {
-                        // Eliminar fila de la tabla
                         row.remove();
 
-                        // Actualizar total del carrito
-                        document.getElementById('cart-total').textContent = `$${parseFloat(json.cart_total).toFixed(2)}`;
-
-                        // Actualizar badge del navbar
+                        updateDisplayedTotal(json.cart_total);
                         document.getElementById('cart-count').textContent = json.cart_quantity;
 
-                        // Mostrar alerta y recargar solo si el carrito quedó vacío
                         Swal.fire({
                             toast: true,
                             position: 'top-end',
@@ -149,25 +199,23 @@
         });
     });
 
-    // Actualizar catidad y total al cambiar el select
     document.querySelectorAll('select[name^="quantity_"]').forEach(select => {
         select.addEventListener('change', function () {
-            const row   = this.closest('tr');
+            const row = this.closest('tr[data-price]');
             const price = parseFloat(row.dataset.price);
-            const qty   = parseInt(this.value);
-            const id    = row.dataset.id;
+            const qty = parseInt(this.value);
+            const id = row.dataset.id;
 
-            // Actualizar UI localmente
             document.getElementById(`total-${id}`).textContent = `$${(price * qty).toFixed(2)}`;
+
             let total = 0;
             document.querySelectorAll('tr[data-price]').forEach(r => {
                 const p = parseFloat(r.dataset.price);
                 const q = parseInt(r.querySelector('select').value);
                 total += p * q;
             });
-            document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+            updateDisplayedTotal(total);
 
-            // Persistir en la sesión via AJAX
             $.ajax({
                 type: 'POST',
                 url: '{% url "cart_overview" %}',
@@ -182,5 +230,11 @@
             });
         });
     });
+
+    function updateDisplayedTotal(total) {
+        const formattedTotal = `$${parseFloat(total).toFixed(2)}`;
+        document.getElementById('cart-total').textContent = formattedTotal;
+        document.getElementById('cart-total-summary').textContent = formattedTotal;
+    }
 </script>
 {% endblock %}
