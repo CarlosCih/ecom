@@ -1,6 +1,7 @@
 import logging
 from decimal import Decimal, ROUND_HALF_UP
 
+from django.views import View
 import stripe
 from django.conf import settings
 from django.db import transaction
@@ -13,6 +14,7 @@ from django.views.decorators.http import require_POST
 
 from cart.cart import Cart
 from inventario.models import Product
+from users.models import Profile
 from .models import Order, OrderItem
 
 logger = logging.getLogger('orders')
@@ -76,6 +78,33 @@ def _build_checkout_data(cart):
     return line_items, order_items, total.quantize(Decimal('0.01'))
 
 
+def _resolve_stripe_customer_id_for_user(user):
+    if not user or not user.is_authenticated:
+        return ''
+    profile, _ = Profile.objects.get_or_create(user=user)
+    customer_id = profile.stripe_customer_id or ''
+    if not customer_id:
+        return ''
+    try:
+        stripe.Customer.retrieve(customer_id)
+        return customer_id
+    except stripe.StripeError:
+        logger.warning('No se pudo recuperar el cliente Stripe %s para %s', customer_id, user.username, exc_info=True)
+        return ''
+
+
+def _resolve_default_payment_method_for_user(user):
+    if not user or not user.is_authenticated:
+        return ''
+    method = user.payment_methods.filter(is_default=True).first()
+    if method:
+        return method.stripe_payment_method_id
+    fallback = user.payment_methods.first()
+    if fallback:
+        return fallback.stripe_payment_method_id
+    return ''
+
+
 @require_POST
 def create_checkout_session(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -89,6 +118,8 @@ def create_checkout_session(request):
 
     user = request.user if request.user.is_authenticated else None
     email = request.user.email if request.user.is_authenticated else ''
+    stripe_customer_id = _resolve_stripe_customer_id_for_user(user)
+    default_payment_method_id = _resolve_default_payment_method_for_user(user)
 
     order = Order.objects.create(
         user=user,
@@ -110,16 +141,35 @@ def create_checkout_session(request):
         'cancel_url': cancel_url,
         'metadata': {'order_id': str(order.id)},
     }
-    if email:
+    if stripe_customer_id:
+        checkout_params['customer'] = stripe_customer_id
+    elif email:
         checkout_params['customer_email'] = email
+    if default_payment_method_id:
+        checkout_params['payment_intent_data'] = {
+            'setup_future_usage': 'off_session',
+            'payment_method': default_payment_method_id,
+        }
+        checkout_params['payment_method_collection'] = 'if_required'
 
     try:
         session = stripe.checkout.Session.create(**checkout_params)
     except stripe.StripeError as exc:
-        order.status = Order.Status.FAILED
-        order.save(update_fields=['status', 'updated_at'])
-        logger.error('Error creando Checkout Session para orden %s: %s', order.id, exc, exc_info=True)
-        return HttpResponseBadRequest('No se pudo iniciar el pago. Intenta de nuevo.')
+        if default_payment_method_id and 'payment_intent_data' in checkout_params:
+            logger.warning('Reintentando checkout sin método predeterminado para orden %s: %s', order.id, exc)
+            checkout_params.pop('payment_intent_data', None)
+            try:
+                session = stripe.checkout.Session.create(**checkout_params)
+            except stripe.StripeError as retry_exc:
+                order.status = Order.Status.FAILED
+                order.save(update_fields=['status', 'updated_at'])
+                logger.error('Error creando Checkout Session para orden %s: %s', order.id, retry_exc, exc_info=True)
+                return HttpResponseBadRequest('No se pudo iniciar el pago. Intenta de nuevo.')
+        else:
+            order.status = Order.Status.FAILED
+            order.save(update_fields=['status', 'updated_at'])
+            logger.error('Error creando Checkout Session para orden %s: %s', order.id, exc, exc_info=True)
+            return HttpResponseBadRequest('No se pudo iniciar el pago. Intenta de nuevo.')
 
     order.stripe_checkout_session_id = session.id
     order.save(update_fields=['stripe_checkout_session_id', 'updated_at'])
@@ -205,3 +255,10 @@ def stripe_webhook(request):
             Order.objects.filter(id=order_id, status=Order.Status.PENDING).update(status=Order.Status.CANCELED)
 
     return HttpResponse(status=200)
+
+#Vista para cargar el template para elegir el metodo para pagar, en funcion a: Api de stripe, pago por codigo QR, pago por transferencia bancaria o pago con sistema local
+class OrderCreateView(View):
+    def post(self, request, *args, **kwargs):
+        # Aquí podrías implementar la lógica para crear una orden directamente desde tu aplicación
+        # sin pasar por Stripe, si es necesario.
+        pass

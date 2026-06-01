@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,17 +14,28 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
+from django.db import transaction
+
 
 from users import forms
 from users.forms import CreateUserForm, LoginForm, ProfileForm, UserUpdateForm
-from .models import Address, Profile
+from .models import Address, PaymentMethod, Profile
 from .token import account_activation_token, password_reset_token
 import logging
 import requests
+import stripe
 
 COUNTRIESNOW_BASE = "https://countriesnow.space/api/v0.1"
 
 logger = logging.getLogger('users')
+
+
+def stripe_value(obj, key, default=None):
+    if obj is None:
+        return default
+    if isinstance(obj, dict):
+        return obj.get(key, default)
+    return getattr(obj, key, default)
 
 
 def get_password_reset_form(user, data=None):
@@ -268,9 +281,11 @@ class ProfileView(LoginRequiredMixin, View):
         profile, _ = Profile.objects.get_or_create(user=request.user)
         addresses = Address.objects.filter(user=request.user)
         active_address = addresses.order_by('-is_default', '-id').first()
+        active_payment_method = PaymentMethod.objects.filter(user=request.user).order_by('-is_default', '-id').first()
         return render(request, 'users/perfil.html', {
             'profile': profile,
             'active_address': active_address,
+            'active_payment_method': active_payment_method,
             'address_count': addresses.count(),
         })
     def post(self, request):
@@ -378,6 +393,183 @@ class AddressDeleteView(LoginRequiredMixin, View):
         address.delete()
         logger.info("Dirección eliminada para el usuario '%s'", request.user.username)
         return redirect('address_list')
+
+
+def get_or_create_user_profile(user):
+    profile, _ = Profile.objects.get_or_create(user=user)
+    return profile
+
+
+def get_or_create_stripe_customer(user):
+    profile = get_or_create_user_profile(user)
+    if profile.stripe_customer_id:
+        try:
+            stripe.Customer.retrieve(profile.stripe_customer_id)
+            return profile.stripe_customer_id
+        except stripe.StripeError as exc:
+            logger.warning("No se pudo recuperar el cliente Stripe '%s' para '%s': %s", profile.stripe_customer_id, user.username, exc)
+    customer_kwargs = {'metadata': {'django_user_id': str(user.id)}}
+    if user.email:
+        customer_kwargs['email'] = user.email
+    full_name = user.get_full_name()
+    if full_name:
+        customer_kwargs['name'] = full_name
+    customer = stripe.Customer.create(**customer_kwargs)
+    profile.stripe_customer_id = stripe_value(customer, 'id')
+    profile.save(update_fields=['stripe_customer_id'])
+    return profile.stripe_customer_id
+
+
+def set_stripe_default_payment_method(user, stripe_payment_method_id=''):
+    profile = get_or_create_user_profile(user)
+    if not profile.stripe_customer_id:
+        return
+    stripe.Customer.modify(
+        profile.stripe_customer_id,
+        invoice_settings={'default_payment_method': stripe_payment_method_id or None},
+    )
+
+
+class PaymentMethodListView(LoginRequiredMixin, View):
+    login_url = 'login'
+    template_name = 'configuraciones/metodos_pagos/metodos_de_pagos.html'
+
+    def get(self, request):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        setup_intent_client_secret = ''
+        stripe_error_message = ''
+        setup_intent_id = request.GET.get('setup_intent')
+        redirect_status = request.GET.get('redirect_status')
+
+        if setup_intent_id:
+            try:
+                setup_intent = stripe.SetupIntent.retrieve(setup_intent_id)
+                payment_method_id = stripe_value(setup_intent, 'payment_method')
+                setup_status = stripe_value(setup_intent, 'status')
+                if redirect_status == 'succeeded' and setup_status == 'succeeded' and payment_method_id:
+                    self.save_payment_method(request.user, payment_method_id)
+                    messages.success(request, 'Tarjeta guardada correctamente.')
+                    return redirect('payment_method_list')
+                if redirect_status and redirect_status != 'succeeded':
+                    messages.error(request, 'No fue posible guardar la tarjeta. Intenta nuevamente.')
+            except (stripe.StripeError, ValueError) as exc:
+                logger.error("Error al procesar SetupIntent para '%s': %s", request.user.username, exc, exc_info=True)
+                messages.error(request, 'Ocurrió un error al validar la tarjeta con Stripe.')
+
+        try:
+            customer_id = get_or_create_stripe_customer(request.user)
+            setup_intent = stripe.SetupIntent.create(
+                customer=customer_id,
+                payment_method_types=['card'],
+                usage='off_session',
+                metadata={'django_user_id': str(request.user.id)},
+            )
+            setup_intent_client_secret = setup_intent.client_secret
+        except stripe.StripeError as exc:
+            stripe_error_message = 'No se pudo preparar el formulario de tarjeta en este momento.'
+            logger.error("Error al crear SetupIntent para '%s': %s", request.user.username, exc, exc_info=True)
+
+        payment_methods = PaymentMethod.objects.filter(user=request.user).order_by('-is_default', '-id')
+        return render(request, self.template_name, {
+            'payment_methods': payment_methods,
+            'active_payment_method': payment_methods.first(),
+            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+            'setup_intent_client_secret': setup_intent_client_secret,
+            'stripe_error_message': stripe_error_message,
+        })
+
+    def save_payment_method(self, user, payment_method_id):
+        customer_id = get_or_create_stripe_customer(user)
+        payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+        attached_customer = stripe_value(payment_method, 'customer')
+        if attached_customer and attached_customer != customer_id:
+            raise ValueError('El método de pago pertenece a otro cliente de Stripe.')
+        if not attached_customer:
+            stripe.PaymentMethod.attach(payment_method_id, customer=customer_id)
+            payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+        card = stripe_value(payment_method, 'card')
+        if not card:
+            raise ValueError('Solo se permiten tarjetas como método de pago.')
+        billing_details = stripe_value(payment_method, 'billing_details')
+        cardholder_name = stripe_value(billing_details, 'name') or user.get_full_name() or user.username
+        is_first_method = not PaymentMethod.objects.filter(user=user).exists()
+
+        with transaction.atomic():
+            method, created = PaymentMethod.objects.update_or_create(
+                user=user,
+                stripe_payment_method_id=payment_method_id,
+                defaults={
+                    'last4': stripe_value(card, 'last4', ''),
+                    'card_brand': stripe_value(card, 'brand', ''),
+                    'expiration_month': stripe_value(card, 'exp_month') or 0,
+                    'expiration_year': stripe_value(card, 'exp_year') or 0,
+                    'cardholder_name': cardholder_name,
+                    'is_default': is_first_method,
+                },
+            )
+            if method.is_default:
+                PaymentMethod.objects.filter(user=user).exclude(pk=method.pk).update(is_default=False)
+                set_stripe_default_payment_method(user, method.stripe_payment_method_id)
+            elif created and not PaymentMethod.objects.filter(user=user, is_default=True).exclude(pk=method.pk).exists():
+                method.is_default = True
+                method.save(update_fields=['is_default'])
+                PaymentMethod.objects.filter(user=user).exclude(pk=method.pk).update(is_default=False)
+                set_stripe_default_payment_method(user, method.stripe_payment_method_id)
+
+
+class PaymentMethodDefaultView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def post(self, request, pk):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        payment_method = get_object_or_404(PaymentMethod, pk=pk, user=request.user)
+        try:
+            with transaction.atomic():
+                PaymentMethod.objects.filter(user=request.user).update(is_default=False)
+                payment_method.is_default = True
+                payment_method.save(update_fields=['is_default'])
+            set_stripe_default_payment_method(request.user, payment_method.stripe_payment_method_id)
+            messages.success(request, 'Método de pago actualizado como predeterminado.')
+        except stripe.StripeError as exc:
+            logger.error("Error al marcar método predeterminado para '%s': %s", request.user.username, exc, exc_info=True)
+            messages.error(request, 'No se pudo actualizar el método predeterminado en Stripe.')
+        return redirect('payment_method_list')
+
+
+class PaymentMethodDeleteView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def post(self, request, pk):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        payment_method = get_object_or_404(PaymentMethod, pk=pk, user=request.user)
+        method_id = payment_method.stripe_payment_method_id
+        was_default = payment_method.is_default
+        try:
+            stripe.PaymentMethod.detach(method_id)
+        except stripe.StripeError as exc:
+            logger.error("Error al desasociar método '%s' para '%s': %s", method_id, request.user.username, exc, exc_info=True)
+            messages.error(request, 'No se pudo eliminar la tarjeta en Stripe. Intenta de nuevo.')
+            return redirect('payment_method_list')
+
+        with transaction.atomic():
+            payment_method.delete()
+            next_method = PaymentMethod.objects.filter(user=request.user).order_by('-id').first()
+            if next_method and (was_default or not PaymentMethod.objects.filter(user=request.user, is_default=True).exists()):
+                next_method.is_default = True
+                next_method.save(update_fields=['is_default'])
+
+        try:
+            next_default = PaymentMethod.objects.filter(user=request.user, is_default=True).first()
+            set_stripe_default_payment_method(
+                request.user,
+                next_default.stripe_payment_method_id if next_default else '',
+            )
+        except stripe.StripeError as exc:
+            logger.error("Error al sincronizar método predeterminado tras eliminar para '%s': %s", request.user.username, exc, exc_info=True)
+
+        messages.success(request, 'Tarjeta eliminada correctamente.')
+        return redirect('payment_method_list')
+
 
 class PasswordChangeView(LoginRequiredMixin, View):
     login_url = 'login'

@@ -37,4 +37,7 @@ urlpatterns = [
     path('settings/direcciones/nueva/', views.AddressCreateView.as_view(), name='address_create'),
     path('settings/direcciones/<int:pk>/editar/', views.AddressUpdateView.as_view(), name='address_edit'),
     path('settings/direcciones/<int:pk>/eliminar/', views.AddressDeleteView.as_view(), name='address_delete'),
+    path('settings/metodos-de-pago/', views.PaymentMethodListView.as_view(), name='payment_method_list'),
+    path('settings/metodos-de-pago/<int:pk>/predeterminado/', views.PaymentMethodDefaultView.as_view(), name='payment_method_default'),
+    path('settings/metodos-de-pago/<int:pk>/eliminar/', views.PaymentMethodDeleteView.as_view(), name='payment_method_delete'),
 ]

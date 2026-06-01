@@ -11,6 +11,7 @@ class Profile(models.Model):
     #identificador fiscal
     rfc = models.CharField(max_length=13, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    stripe_customer_id = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     
     class Meta:
         verbose_name = 'Perfil'
@@ -20,7 +21,7 @@ class Profile(models.Model):
         return f"Perfil de {self.user.username}"
     
 class PaymentMethod(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='payment_methods')
     stripe_payment_method_id = models.CharField(max_length=255)  # ej. pm_1ABC...
     last4 = models.CharField(max_length=4)                        # últimos 4 dígitos
     card_brand = models.CharField(max_length=50)                  # visa, mastercard, etc.
@@ -32,6 +33,13 @@ class PaymentMethod(models.Model):
     class Meta:
         verbose_name = 'Método de Pago'
         verbose_name_plural = 'Métodos de Pago'
+        ordering = ['-is_default', '-id']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'stripe_payment_method_id'],
+                name='users_unique_payment_method_per_user',
+            ),
+        ]
 
     def __str__(self):
         return f"{self.card_brand} ...{self.last4} ({self.user.username})"

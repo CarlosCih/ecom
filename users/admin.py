@@ -4,8 +4,8 @@ from .models import PaymentMethod, Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-	list_display = ('user', 'telefono', 'fecha_nacimiento', 'curp', 'rfc')
-	search_fields = ('user__username', 'user__email', 'telefono', 'curp', 'rfc')
+	list_display = ('user', 'telefono', 'fecha_nacimiento', 'curp', 'rfc', 'stripe_customer_id')
+	search_fields = ('user__username', 'user__email', 'telefono', 'curp', 'rfc', 'stripe_customer_id')
 	raw_id_fields = ('user',)
 
 

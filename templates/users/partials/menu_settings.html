@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition">
+                <a href="{% url 'payment_method_list' %}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition {% if request.resolver_match.url_name == 'payment_method_list' %}bg-indigo-50 text-indigo-700{% endif %}">
                     Métodos de pago
                 </a>
             </li>
