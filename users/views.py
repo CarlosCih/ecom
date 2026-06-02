@@ -430,6 +430,31 @@ def set_stripe_default_payment_method(user, stripe_payment_method_id=''):
     )
 
 
+def build_stripe_payment_method_context(user):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    setup_intent_client_secret = ''
+    stripe_error_message = ''
+
+    try:
+        customer_id = get_or_create_stripe_customer(user)
+        setup_intent = stripe.SetupIntent.create(
+            customer=customer_id,
+            payment_method_types=['card'],
+            usage='off_session',
+            metadata={'django_user_id': str(user.id)},
+        )
+        setup_intent_client_secret = setup_intent.client_secret
+    except stripe.StripeError as exc:
+        stripe_error_message = f'No se pudo preparar el formulario de tarjeta: {exc}'
+        logger.error("Error al crear SetupIntent para '%s': %s", user.username, exc, exc_info=True)
+
+    return {
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+        'setup_intent_client_secret': setup_intent_client_secret,
+        'stripe_error_message': stripe_error_message,
+    }
+
+
 class PaymentMethodListView(LoginRequiredMixin, View):
     login_url = 'login'
     template_name = 'configuraciones/metodos_pagos/metodos_de_pagos.html'
@@ -456,26 +481,13 @@ class PaymentMethodListView(LoginRequiredMixin, View):
                 logger.error("Error al procesar SetupIntent para '%s': %s", request.user.username, exc, exc_info=True)
                 messages.error(request, 'Ocurrió un error al validar la tarjeta con Stripe.')
 
-        try:
-            customer_id = get_or_create_stripe_customer(request.user)
-            setup_intent = stripe.SetupIntent.create(
-                customer=customer_id,
-                payment_method_types=['card'],
-                usage='off_session',
-                metadata={'django_user_id': str(request.user.id)},
-            )
-            setup_intent_client_secret = setup_intent.client_secret
-        except stripe.StripeError as exc:
-            stripe_error_message = 'No se pudo preparar el formulario de tarjeta en este momento.'
-            logger.error("Error al crear SetupIntent para '%s': %s", request.user.username, exc, exc_info=True)
+        stripe_context = build_stripe_payment_method_context(request.user)
 
         payment_methods = PaymentMethod.objects.filter(user=request.user).order_by('-is_default', '-id')
         return render(request, self.template_name, {
             'payment_methods': payment_methods,
             'active_payment_method': payment_methods.first(),
-            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-            'setup_intent_client_secret': setup_intent_client_secret,
-            'stripe_error_message': stripe_error_message,
+            **stripe_context,
         })
 
     def save_payment_method(self, user, payment_method_id):
@@ -516,6 +528,17 @@ class PaymentMethodListView(LoginRequiredMixin, View):
                 PaymentMethod.objects.filter(user=user).exclude(pk=method.pk).update(is_default=False)
                 set_stripe_default_payment_method(user, method.stripe_payment_method_id)
 
+
+class PaymentMethodCreateView(LoginRequiredMixin, View):
+    login_url = 'login'
+    template_name = 'configuraciones/metodos_pagos/new_metodo_pago.html'
+    
+    def get(self, request):
+        return render(request, self.template_name, build_stripe_payment_method_context(request.user))
+
+    def post(self, request):
+        # Esta vista se mantiene para manejar la redirección después de agregar una tarjeta, pero la lógica principal se maneja en PaymentMethodListView
+        return redirect('payment_method_list')
 
 class PaymentMethodDefaultView(LoginRequiredMixin, View):
     login_url = 'login'

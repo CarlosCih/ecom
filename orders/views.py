@@ -262,3 +262,11 @@ class OrderCreateView(View):
         # Aquí podrías implementar la lógica para crear una orden directamente desde tu aplicación
         # sin pasar por Stripe, si es necesario.
         pass
+
+class OrderHistoryView(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+        
+        orders = Order.objects.filter(user=request.user).order_by('-created_at')
+        return render(request, 'orders/history_orden.html', {'orders': orders})

@@ -26,11 +26,15 @@ SECRET_KEY = 'django-insecure-rvc$+)erhc!^-^!8c(moo_l91&k05$_pibq$x(b^98(%c%nkgw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Initialise environment variables
 env = environ.Env()
-environ.Env.read_env()
+env_file = BASE_DIR / 'ecom' / '.env'
+if env_file.exists():
+    environ.Env.read_env(env_file, overwrite=True)
+else:
+    environ.Env.read_env(BASE_DIR / '.env', overwrite=True)
 
 # Application definition
 

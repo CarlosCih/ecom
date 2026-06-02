@@ -1,5 +1,112 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Métodos de Pago{% endblock %}
+{% block title %}Agregar método de pago{% endblock %}
+
 {% block body %}
+<div class="min-h-screen bg-gray-100">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-6">
+
+      {% include "users/partials/menu_settings.html" %}
+
+      <main class="flex-1 space-y-4">
+        <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100 space-y-6">
+          <div class="border-b border-gray-100 bg-gradient-to-r from-cyan-50 via-white to-indigo-50 p-6">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex items-start gap-4">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-100 text-cyan-700 ring-1 ring-cyan-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-cyan-700">Pagos</p>
+                  <h2 class="mt-1 text-2xl font-semibold text-gray-900">Agregar tarjeta</h2>
+                </div>
+              </div>
+              <a href="{% url 'payment_method_list' %}" class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Volver
+              </a>
+            </div>
+          </div>
+
+          <div class="p-2">
+            {% if stripe_public_key and setup_intent_client_secret %}
+              <form id="payment-method-form" method="post" class="space-y-5">
+                {% csrf_token %}
+
+                <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Detalles de la tarjeta</label>
+                  <div id="payment-element" class="min-h-[120px]"></div>
+                </div>
+
+                <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
+                  <a href="{% url 'payment_method_list' %}" class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50">
+                    Cancelar
+                  </a>
+                  <button id="submit-payment-method" type="submit" class="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-60">
+                    Guardar método de pago
+                  </button>
+                </div>
+
+                <p id="payment-message" class="hidden rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+              </form>
+            {% else %}
+              <div class="rounded-2xl border border-amber-100 bg-amber-50 p-5">
+                <div class="flex items-start gap-3">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-amber-600 ring-1 ring-amber-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3.75h.008v.008H12V16.5zm9-4.5a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-gray-900">No se pudo cargar Stripe</h3>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                      {{ stripe_error_message|default:'Configura STRIPE_PUBLIC_KEY y STRIPE_SECRET_KEY para habilitar el formulario de tarjetas.' }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+{% if stripe_public_key and setup_intent_client_secret %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe('{{ stripe_public_key }}');
+  const elements = stripe.elements({ clientSecret: '{{ setup_intent_client_secret }}' });
+  const paymentElement = elements.create('payment');
+  const form = document.getElementById('payment-method-form');
+  const message = document.getElementById('payment-message');
+  const submitButton = document.getElementById('submit-payment-method');
+
+  paymentElement.mount('#payment-element');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    submitButton.disabled = true;
+
+    const { error } = await stripe.confirmSetup({
+      elements,
+      confirmParams: {
+        return_url: window.location.origin + '{% url "payment_method_list" %}',
+      },
+    });
+
+    if (error) {
+      message.textContent = error.message;
+      message.classList.remove('hidden');
+      submitButton.disabled = false;
+    }
+  });
+</script>
+{% endif %}
 {% endblock %}
