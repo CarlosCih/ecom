@@ -9,12 +9,24 @@ Implementar un sistema de notificaciones estilo marketplace (Amazon/Mercado Libr
 - cancelación
 - reembolso
 
-## Stack recomendado para este proyecto
+## Alcance real del proyecto (práctica)
+- Este proyecto está orientado a aprendizaje, portafolio y base reusable.
+- No está pensado para producción en su estado actual.
+- Las decisiones técnicas deben priorizar simplicidad y velocidad de implementación.
+- Se deja una arquitectura escalable como referencia para futuras adaptaciones comerciales.
+
+## Stack recomendado para este proyecto (práctica + escalable)
 1. Celery + Redis para procesamiento asíncrono de tareas.
 2. Modelo interno de notificaciones (inbox por usuario) en base de datos.
 3. Email transaccional como canal inicial.
 4. Django Channels + channels-redis para tiempo real en la campana (fase posterior).
 5. Proveedor de email vía Anymail (SendGrid, Mailgun o Brevo) cuando se pase a producción.
+
+## Ruta mínima recomendada para práctica (sin sobreingeniería)
+1. Empezar con inbox interno en base de datos + vista de notificaciones.
+2. Usar Celery solo para eventos clave (compra confirmada/cancelación) y dejar el resto sincronizado temporalmente.
+3. Mostrar cambios en UI por polling simple (cada 20-60 segundos) antes de incorporar websockets.
+4. Dejar Channels, push y proveedores externos como fase opcional cuando el prototipo esté estable.
 
 ## Razón de arquitectura
 - Permite desacoplar eventos de negocio del envío real de notificaciones.
